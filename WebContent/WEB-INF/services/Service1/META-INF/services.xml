@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- This file was auto-generated from WSDL --><!-- by the Apache Axis2 version: 1.7.3  Built on : May 30, 2016 (04:08:57 BST) --><serviceGroup>
+    <service name="Service1">
+        <messageReceivers>
+            <messageReceiver mep="http://www.w3.org/ns/wsdl/in-out" class="com.cg.gps.ehiservices.transaction.Service1MessageReceiverInOut"/>
+        </messageReceivers>
+        <parameter name="ServiceClass">com.cg.gps.ehiservices.transaction.Service1Skeleton</parameter>
+        <parameter name="useOriginalwsdl">true</parameter>
+        <parameter name="modifyUserWSDLPortAddress">true</parameter>
+        <operation name="GetTransaction" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://tempuri.org/">
+            <actionMapping>http://tempuri.org/GetTransaction</actionMapping>
+            <outputActionMapping>http://tempuri.org/Service1Soap/GetTransactionResponse</outputActionMapping>
+        </operation>
+    </service>
+</serviceGroup>
