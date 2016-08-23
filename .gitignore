@@ -1,2 +1,3 @@
-build/classes/
-WEB-INF/classes/
+build/classes
+WEB-INF/classes
+WebContent/WEB-INF/services/Service1
