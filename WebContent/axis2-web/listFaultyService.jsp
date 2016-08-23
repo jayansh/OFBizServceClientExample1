@@ -25,13 +25,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <jsp:include page="/WEB-INF/include/httpbase.jsp"/>
+    <jsp:include page="include/httpbase.jsp"/>
     <title>List Single service</title>
     <link href="axis2-web/css/axis-style.css" rel="stylesheet" type="text/css">
   </head>
   <body>
-  <jsp:include page="/WEB-INF/include/header.inc"/>
-    <jsp:include page="/WEB-INF/include/link-footer.jsp"/>
+  <jsp:include page="include/header.inc"></jsp:include>
+    <jsp:include page="include/link-footer.jsp"></jsp:include>
   <%
         String prifix = request.getAttribute("frontendHostUrl") + (String)request.getSession().getAttribute(Constants.SERVICE_PATH) +"services/";
     %>
@@ -42,7 +42,7 @@
                 Hashtable errornessservices =(Hashtable)request.getSession().getAttribute(Constants.ERROR_SERVICE_MAP);
                 %>
                     <h3>This Web axisService has deployment faults</h3><%
-                     %><p style="color:red"><%=(String)errornessservices.get(servicName) %></p>
+                     %><font color="red" ><%=(String)errornessservices.get(servicName) %></font>
                 <%
 
                     }else {
@@ -53,21 +53,15 @@
            Iterator opItr = axisService.getOperations();
             //operationsList = operations.values();
           String  serviceName = axisService.getName();
-            %><h2><a style="color:blue" href="<%=prifix + axisService.getName()%>?wsdl"><%=serviceName%></a></h2>
-            <p>
-            <span style="color:blue">Service EPR :</span>
-            <span style="color:black"><%=prifix + axisService.getName()%></span>
-            </p>
-           
-           <h4>Service Description : <span style="color:blue"><%=axisService.getDocumentation()%></span></h4>
-           <p>
-           <span style="color:blue; font-style:italic">Service Status : <%=axisService.isActive()?"Active":"InActive"%></span>
-           </p>
+            %><h2><font color="blue"><a href="<%=prifix + axisService.getName()%>?wsdl"><%=serviceName%></a></font></h2>
+           <font color="blue">Service EPR : </font><font color="black"><%=prifix + axisService.getName()%></font><br>
+           <h4>Service Description : <font color="black"><%=axisService.getServiceDescription()%></font></h4>
+           <i><font color="blue">Service Status : <%=axisService.isActive()?"Active":"InActive"%></font></i><br>
            <%
             if (opItr.hasNext()) {
-                %><span style="font-style:italic">Available operations</span><%
+                %><i>Available operations</i><%
             } else {
-                %><span style="font-style:italic"> There are no Operations specified</span><%
+                %><i> There are no Operations specified</i><%
             }
                opItr = axisService.getOperations();
            %><ul><%
@@ -80,12 +74,12 @@
            <%
                     } else{
                            %>
-                <h3 style="color:red">No services found in this location.</h3>
+                <h3><font color="red" >No services found in this location.</font></h3>
  <%
                     }
 
             }
         %>
-<jsp:include page="/WEB-INF/include/footer.inc"/>
+<jsp:include page="include/footer.inc"></jsp:include>
         </body>
 </html>

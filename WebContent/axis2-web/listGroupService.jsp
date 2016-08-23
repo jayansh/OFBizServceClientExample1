@@ -27,13 +27,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <jsp:include page="/WEB-INF/include/httpbase.jsp"/>
+  <jsp:include page="include/httpbase.jsp"/>
   <title>List Services</title>
-  <link href="axis2-web/css/axis-style.css" rel="stylesheet" type="text/css">
+  <link href="axis2-web/css/axis-style.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-<jsp:include page="/WEB-INF/include/adminheader.jsp"/>
+<jsp:include page="include/adminheader.jsp"/>
 <h1>Available services</h1>
 <%
   String prefix = request.getAttribute("frontendHostUrl") + (String)request.getSession().getAttribute(Constants.SERVICE_PATH) +"/";
@@ -49,28 +49,17 @@
         serviceName = axisService.getName();
 %><hr>
 
-<h2><a style="color:blue" href="<%=prefix + axisService.getName()%>?wsdl"><%=serviceName%></a></h2>
-<p>
-<span style="color:blue">Service EPR :</span>
-<span style="color:black"><%=prefix + axisService.getName()%></span>
-</p>
-
-<h4>Service Description : <span style="color:black"><%=axisService.getDocumentation()%></span></h4>
-
-<p style="color:blue; font-style:italic">
-Service Status : <%=axisService.isActive() ? "Active" : "InActive"%>
-</p>
-
+<h2><font color="blue"><a href="<%=prefix + axisService.getName()%>?wsdl"><%=serviceName%></a>
+</font></h2>
+<font color="blue">Service EPR :</font><font color="black"><%=prefix + axisService.getName()%></font>
+<h4>Service Description : <font color="black"><%=axisService.getServiceDescription()%></font></h4>
+<i><font color="blue">Service Status : <%=axisService.isActive() ? "Active" : "InActive"%></font></i><br/>
 <%
   Collection engagedModules = axisService.getEngagedModules();
   String moduleName;
   if (engagedModules.size() > 0) {
 %>
-<p style="font-style:italic">
-Engaged Modules for the Axis Service
-</p>
-
-<ul>
+<i>Engaged Modules for the Axis Service</i><ul>
   <%
     for (Iterator iteratorm = engagedModules.iterator(); iteratorm.hasNext();) {
       AxisModule axisOperation = (AxisModule) iteratorm.next();
@@ -82,18 +71,9 @@ Engaged Modules for the Axis Service
 <%
   }
   if (operations.hasNext()) {
-%>
-
-<p style="font-style:italic">
-Available operations
-</p>
-<%
+%><br><i>Available operations</i><%
 } else {
-%>
-<p style="font-style:italic">
-There are no operations specified
-</p>
-<%
+%><i> There are no operations specified</i><%
   }
 %><ul><%
   operations = axisService.getOperations();
@@ -104,17 +84,12 @@ There are no operations specified
     engagedModules = axisOperation.getEngagedModules();
     if (engagedModules.size() > 0) {
   %>
-  
-<p style="font-style:italic">
-Engaged Modules for the Operation
-</p>
-<ul>
+  <br><i>Engaged Modules for the Operation</i><ul>
   <%
     for (Iterator iterator2 = engagedModules.iterator(); iterator2.hasNext();) {
       AxisModule moduleDecription = (AxisModule) iterator2.next();
       moduleName = moduleDecription.getName();
-  %><li><%=moduleName%></li>
-  <%
+  %><li><%=moduleName%></li><br><%
   }
 %></ul><%
     }
@@ -124,6 +99,6 @@ Engaged Modules for the Operation
 <%
   }
 %>
-<jsp:include page="/WEB-INF/include/adminfooter.inc"/>
+<jsp:include page="include/adminfooter.inc"/>
 </body>
 </html>
