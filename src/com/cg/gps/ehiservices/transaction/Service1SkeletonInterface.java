@@ -3,7 +3,7 @@
  * Service1SkeletonInterface.java
  *
  * This file was auto-generated from WSDL
- * by the Apache Axis2 version: 1.7.3  Built on : May 30, 2016 (04:08:57 BST)
+ * by the Apache Axis2 version: 1.6.3  Built on : Jun 27, 2015 (11:17:49 BST)
  */
     package com.cg.gps.ehiservices.transaction;
     /**

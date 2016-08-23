@@ -3,7 +3,7 @@
  * GetTransaction.java
  *
  * This file was auto-generated from WSDL
- * by the Apache Axis2 version: 1.7.3  Built on : May 30, 2016 (04:09:26 BST)
+ * by the Apache Axis2 version: 1.6.3  Built on : Jun 27, 2015 (11:18:31 BST)
  */
 
             
@@ -3021,7 +3021,9 @@
 
 
         
-               return factory.createOMElement(new org.apache.axis2.databinding.ADBDataSource(this,MY_QNAME));
+               org.apache.axiom.om.OMDataSource dataSource =
+                       new org.apache.axis2.databinding.ADBDataSource(this,MY_QNAME);
+               return factory.createOMElement(dataSource,MY_QNAME);
             
         }
 
@@ -4373,7 +4375,7 @@
                                        javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
             java.lang.String writerPrefix = xmlWriter.getPrefix(namespace);
             if (writerPrefix != null) {
-                xmlWriter.writeStartElement(writerPrefix, localPart, namespace);
+                xmlWriter.writeStartElement(namespace, localPart);
             } else {
                 if (namespace.length() == 0) {
                     prefix = "";
@@ -4392,14 +4394,11 @@
          */
         private void writeAttribute(java.lang.String prefix,java.lang.String namespace,java.lang.String attName,
                                     java.lang.String attValue,javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException{
-            java.lang.String writerPrefix = xmlWriter.getPrefix(namespace);
-            if (writerPrefix != null) {
-                xmlWriter.writeAttribute(writerPrefix, namespace,attName,attValue);
-            } else {
+            if (xmlWriter.getPrefix(namespace) == null) {
                 xmlWriter.writeNamespace(prefix, namespace);
                 xmlWriter.setPrefix(prefix, namespace);
-                xmlWriter.writeAttribute(prefix, namespace,attName,attValue);
             }
+            xmlWriter.writeAttribute(namespace,attName,attValue);
         }
 
         /**
@@ -4410,7 +4409,8 @@
             if (namespace.equals("")) {
                 xmlWriter.writeAttribute(attName,attValue);
             } else {
-                xmlWriter.writeAttribute(registerPrefix(xmlWriter, namespace), namespace,attName,attValue);
+                registerPrefix(xmlWriter, namespace);
+                xmlWriter.writeAttribute(namespace,attName,attValue);
             }
         }
 
@@ -4437,7 +4437,7 @@
                     xmlWriter.writeAttribute(attName, attributeValue);
                 } else {
                     registerPrefix(xmlWriter, namespace);
-                    xmlWriter.writeAttribute(attributePrefix, namespace, attName, attributeValue);
+                    xmlWriter.writeAttribute(namespace, attName, attributeValue);
                 }
             }
         /**
@@ -4528,12 +4528,671 @@
 
 
   
+        /**
+        * databinding method to get an XML representation of this object
+        *
+        */
+        public javax.xml.stream.XMLStreamReader getPullParser(javax.xml.namespace.QName qName)
+                    throws org.apache.axis2.databinding.ADBException{
+
+
+        
+                 java.util.ArrayList elementList = new java.util.ArrayList();
+                 java.util.ArrayList attribList = new java.util.ArrayList();
+
+                 if (localAcquirer_id_DE32Tracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Acquirer_id_DE32"));
+                                 
+                                        if (localAcquirer_id_DE32 != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localAcquirer_id_DE32));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("Acquirer_id_DE32 cannot be null!!");
+                                        }
+                                    }
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "ActBal"));
+                                 
+                                elementList.add(
+                                   org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localActBal));
+                             if (localAdditional_Amt_DE54Tracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Additional_Amt_DE54"));
+                                 
+                                        if (localAdditional_Amt_DE54 != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localAdditional_Amt_DE54));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("Additional_Amt_DE54 cannot be null!!");
+                                        }
+                                    } if (localAmt_Tran_Fee_DE28Tracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Amt_Tran_Fee_DE28"));
+                                 
+                                        if (localAmt_Tran_Fee_DE28 != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localAmt_Tran_Fee_DE28));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("Amt_Tran_Fee_DE28 cannot be null!!");
+                                        }
+                                    } if (localAuth_Code_DE38Tracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Auth_Code_DE38"));
+                                 
+                                        if (localAuth_Code_DE38 != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localAuth_Code_DE38));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("Auth_Code_DE38 cannot be null!!");
+                                        }
+                                    }
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Avl_Bal"));
+                                 
+                                elementList.add(
+                                   org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localAvl_Bal));
+                            
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Bill_Amt"));
+                                 
+                                elementList.add(
+                                   org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localBill_Amt));
+                             if (localBill_CcyTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Bill_Ccy"));
+                                 
+                                        if (localBill_Ccy != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localBill_Ccy));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("Bill_Ccy cannot be null!!");
+                                        }
+                                    }
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "BlkAmt"));
+                                 
+                                elementList.add(
+                                   org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localBlkAmt));
+                             if (localCust_RefTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Cust_Ref"));
+                                 
+                                        if (localCust_Ref != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localCust_Ref));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("Cust_Ref cannot be null!!");
+                                        }
+                                    } if (localCVV2Tracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "CVV2"));
+                                 
+                                        if (localCVV2 != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localCVV2));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("CVV2 cannot be null!!");
+                                        }
+                                    } if (localExpiry_DateTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Expiry_Date"));
+                                 
+                                        if (localExpiry_Date != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localExpiry_Date));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("Expiry_Date cannot be null!!");
+                                        }
+                                    }
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "FX_Pad"));
+                                 
+                                elementList.add(
+                                   org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localFX_Pad));
+                            
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Fee_Fixed"));
+                                 
+                                elementList.add(
+                                   org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localFee_Fixed));
+                            
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Fee_Rate"));
+                                 
+                                elementList.add(
+                                   org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localFee_Rate));
+                             if (localLoadSRCTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "LoadSRC"));
+                                 
+                                        if (localLoadSRC != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localLoadSRC));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("LoadSRC cannot be null!!");
+                                        }
+                                    } if (localLoadTypeTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "LoadType"));
+                                 
+                                        if (localLoadType != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localLoadType));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("LoadType cannot be null!!");
+                                        }
+                                    } if (localMCC_CodeTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "MCC_Code"));
+                                 
+                                        if (localMCC_Code != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localMCC_Code));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("MCC_Code cannot be null!!");
+                                        }
+                                    } if (localMCC_DescTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "MCC_Desc"));
+                                 
+                                        if (localMCC_Desc != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localMCC_Desc));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("MCC_Desc cannot be null!!");
+                                        }
+                                    }
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "MCC_Pad"));
+                                 
+                                elementList.add(
+                                   org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localMCC_Pad));
+                             if (localMerch_ID_DE42Tracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Merch_ID_DE42"));
+                                 
+                                        if (localMerch_ID_DE42 != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localMerch_ID_DE42));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("Merch_ID_DE42 cannot be null!!");
+                                        }
+                                    } if (localMerch_Name_DE43Tracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Merch_Name_DE43"));
+                                 
+                                        if (localMerch_Name_DE43 != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localMerch_Name_DE43));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("Merch_Name_DE43 cannot be null!!");
+                                        }
+                                    } if (localNoteTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Note"));
+                                 
+                                        if (localNote != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localNote));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("Note cannot be null!!");
+                                        }
+                                    } if (localPAN_Sequence_NumberTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "PAN_Sequence_Number"));
+                                 
+                                        if (localPAN_Sequence_Number != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localPAN_Sequence_Number));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("PAN_Sequence_Number cannot be null!!");
+                                        }
+                                    } if (localPINTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "PIN"));
+                                 
+                                        if (localPIN != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localPIN));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("PIN cannot be null!!");
+                                        }
+                                    } if (localPIN_Enc_AlgorithmTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "PIN_Enc_Algorithm"));
+                                 
+                                        if (localPIN_Enc_Algorithm != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localPIN_Enc_Algorithm));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("PIN_Enc_Algorithm cannot be null!!");
+                                        }
+                                    } if (localPIN_FormatTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "PIN_Format"));
+                                 
+                                        if (localPIN_Format != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localPIN_Format));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("PIN_Format cannot be null!!");
+                                        }
+                                    } if (localPIN_Key_IndexTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "PIN_Key_Index"));
+                                 
+                                        if (localPIN_Key_Index != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localPIN_Key_Index));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("PIN_Key_Index cannot be null!!");
+                                        }
+                                    } if (localPOS_Data_DE22Tracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "POS_Data_DE22"));
+                                 
+                                        if (localPOS_Data_DE22 != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localPOS_Data_DE22));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("POS_Data_DE22 cannot be null!!");
+                                        }
+                                    } if (localPOS_Data_DE61Tracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "POS_Data_DE61"));
+                                 
+                                        if (localPOS_Data_DE61 != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localPOS_Data_DE61));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("POS_Data_DE61 cannot be null!!");
+                                        }
+                                    } if (localPOS_Termnl_DE41Tracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "POS_Termnl_DE41"));
+                                 
+                                        if (localPOS_Termnl_DE41 != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localPOS_Termnl_DE41));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("POS_Termnl_DE41 cannot be null!!");
+                                        }
+                                    } if (localPOS_Time_DE12Tracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "POS_Time_DE12"));
+                                 
+                                        if (localPOS_Time_DE12 != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localPOS_Time_DE12));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("POS_Time_DE12 cannot be null!!");
+                                        }
+                                    } if (localProc_CodeTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Proc_Code"));
+                                 
+                                        if (localProc_Code != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localProc_Code));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("Proc_Code cannot be null!!");
+                                        }
+                                    } if (localResp_Code_DE39Tracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Resp_Code_DE39"));
+                                 
+                                        if (localResp_Code_DE39 != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localResp_Code_DE39));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("Resp_Code_DE39 cannot be null!!");
+                                        }
+                                    } if (localRet_Ref_No_DE37Tracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Ret_Ref_No_DE37"));
+                                 
+                                        if (localRet_Ref_No_DE37 != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localRet_Ref_No_DE37));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("Ret_Ref_No_DE37 cannot be null!!");
+                                        }
+                                    }
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Settle_Amt"));
+                                 
+                                elementList.add(
+                                   org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localSettle_Amt));
+                             if (localSettle_CcyTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Settle_Ccy"));
+                                 
+                                        if (localSettle_Ccy != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localSettle_Ccy));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("Settle_Ccy cannot be null!!");
+                                        }
+                                    } if (localStatus_CodeTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Status_Code"));
+                                 
+                                        if (localStatus_Code != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localStatus_Code));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("Status_Code cannot be null!!");
+                                        }
+                                    } if (localTokenTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Token"));
+                                 
+                                        if (localToken != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localToken));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("Token cannot be null!!");
+                                        }
+                                    } if (localTrans_linkTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Trans_link"));
+                                 
+                                        if (localTrans_link != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localTrans_link));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("Trans_link cannot be null!!");
+                                        }
+                                    }
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Txn_Amt"));
+                                 
+                                elementList.add(
+                                   org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localTxn_Amt));
+                             if (localTxn_CCyTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Txn_CCy"));
+                                 
+                                        if (localTxn_CCy != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localTxn_CCy));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("Txn_CCy cannot be null!!");
+                                        }
+                                    } if (localTxn_CtryTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Txn_Ctry"));
+                                 
+                                        if (localTxn_Ctry != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localTxn_Ctry));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("Txn_Ctry cannot be null!!");
+                                        }
+                                    } if (localTxn_DescTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Txn_Desc"));
+                                 
+                                        if (localTxn_Desc != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localTxn_Desc));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("Txn_Desc cannot be null!!");
+                                        }
+                                    } if (localTxn_GPS_DateTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Txn_GPS_Date"));
+                                 
+                                        if (localTxn_GPS_Date != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localTxn_GPS_Date));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("Txn_GPS_Date cannot be null!!");
+                                        }
+                                    }
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "TXn_ID"));
+                                 
+                                        if (localTXn_ID != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localTXn_ID));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("TXn_ID cannot be null!!");
+                                        }
+                                     if (localTxn_Stat_CodeTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Txn_Stat_Code"));
+                                 
+                                        if (localTxn_Stat_Code != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localTxn_Stat_Code));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("Txn_Stat_Code cannot be null!!");
+                                        }
+                                    } if (localTXN_Time_DE07Tracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "TXN_Time_DE07"));
+                                 
+                                        if (localTXN_Time_DE07 != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localTXN_Time_DE07));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("TXN_Time_DE07 cannot be null!!");
+                                        }
+                                    } if (localTxn_TypeTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Txn_Type"));
+                                 
+                                        if (localTxn_Type != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localTxn_Type));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("Txn_Type cannot be null!!");
+                                        }
+                                    } if (localAdditional_Data_DE48Tracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Additional_Data_DE48"));
+                                 
+                                        if (localAdditional_Data_DE48 != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localAdditional_Data_DE48));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("Additional_Data_DE48 cannot be null!!");
+                                        }
+                                    } if (localAuthorised_by_GPSTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Authorised_by_GPS"));
+                                 
+                                        if (localAuthorised_by_GPS != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localAuthorised_by_GPS));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("Authorised_by_GPS cannot be null!!");
+                                        }
+                                    } if (localAVS_ResultTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "AVS_Result"));
+                                 
+                                        if (localAVS_Result != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localAVS_Result));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("AVS_Result cannot be null!!");
+                                        }
+                                    } if (localCU_GroupTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "CU_Group"));
+                                 
+                                        if (localCU_Group != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localCU_Group));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("CU_Group cannot be null!!");
+                                        }
+                                    } if (localInstCodeTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "InstCode"));
+                                 
+                                        if (localInstCode != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localInstCode));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("InstCode cannot be null!!");
+                                        }
+                                    } if (localMTIDTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "MTID"));
+                                 
+                                        if (localMTID != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localMTID));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("MTID cannot be null!!");
+                                        }
+                                    }
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "ProductID"));
+                                 
+                                elementList.add(
+                                   org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localProductID));
+                             if (localRecord_Data_DE120Tracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Record_Data_DE120"));
+                                 
+                                        if (localRecord_Data_DE120 != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localRecord_Data_DE120));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("Record_Data_DE120 cannot be null!!");
+                                        }
+                                    }
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "SubBIN"));
+                                 
+                                elementList.add(
+                                   org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localSubBIN));
+                             if (localTLogIDOrgTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "TLogIDOrg"));
+                                 
+                                        if (localTLogIDOrg != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localTLogIDOrg));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("TLogIDOrg cannot be null!!");
+                                        }
+                                    } if (localVL_GroupTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "VL_Group"));
+                                 
+                                        if (localVL_Group != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localVL_Group));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("VL_Group cannot be null!!");
+                                        }
+                                    } if (localDom_Fee_FixedTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Dom_Fee_Fixed"));
+                                 
+                                        if (localDom_Fee_Fixed != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localDom_Fee_Fixed));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("Dom_Fee_Fixed cannot be null!!");
+                                        }
+                                    } if (localNon_Dom_Fee_FixedTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Non_Dom_Fee_Fixed"));
+                                 
+                                        if (localNon_Dom_Fee_Fixed != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localNon_Dom_Fee_Fixed));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("Non_Dom_Fee_Fixed cannot be null!!");
+                                        }
+                                    } if (localFx_Fee_FixedTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Fx_Fee_Fixed"));
+                                 
+                                        if (localFx_Fee_Fixed != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localFx_Fee_Fixed));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("Fx_Fee_Fixed cannot be null!!");
+                                        }
+                                    } if (localOther_Fee_AmtTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Other_Fee_Amt"));
+                                 
+                                        if (localOther_Fee_Amt != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localOther_Fee_Amt));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("Other_Fee_Amt cannot be null!!");
+                                        }
+                                    } if (localFx_Fee_RateTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Fx_Fee_Rate"));
+                                 
+                                        if (localFx_Fee_Rate != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localFx_Fee_Rate));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("Fx_Fee_Rate cannot be null!!");
+                                        }
+                                    } if (localDom_Fee_RateTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Dom_Fee_Rate"));
+                                 
+                                        if (localDom_Fee_Rate != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localDom_Fee_Rate));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("Dom_Fee_Rate cannot be null!!");
+                                        }
+                                    } if (localNon_Dom_Fee_RateTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Non_Dom_Fee_Rate"));
+                                 
+                                        if (localNon_Dom_Fee_Rate != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localNon_Dom_Fee_Rate));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("Non_Dom_Fee_Rate cannot be null!!");
+                                        }
+                                    } if (localAdditional_Data_DE124Tracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Additional_Data_DE124"));
+                                 
+                                        if (localAdditional_Data_DE124 != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localAdditional_Data_DE124));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("Additional_Data_DE124 cannot be null!!");
+                                        }
+                                    }
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "SendingAttemptCount"));
+                                 
+                                        if (localSendingAttemptCount != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localSendingAttemptCount));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("SendingAttemptCount cannot be null!!");
+                                        }
+                                     if (localSource_Bank_CtryTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Source_Bank_Ctry"));
+                                 
+                                        if (localSource_Bank_Ctry != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localSource_Bank_Ctry));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("Source_Bank_Ctry cannot be null!!");
+                                        }
+                                    } if (localSource_Bank_Account_FormatTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Source_Bank_Account_Format"));
+                                 
+                                        if (localSource_Bank_Account_Format != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localSource_Bank_Account_Format));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("Source_Bank_Account_Format cannot be null!!");
+                                        }
+                                    } if (localSource_Bank_AccountTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Source_Bank_Account"));
+                                 
+                                        if (localSource_Bank_Account != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localSource_Bank_Account));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("Source_Bank_Account cannot be null!!");
+                                        }
+                                    } if (localDest_Bank_Account_FormatTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Dest_Bank_Account_Format"));
+                                 
+                                        if (localDest_Bank_Account_Format != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localDest_Bank_Account_Format));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("Dest_Bank_Account_Format cannot be null!!");
+                                        }
+                                    } if (localDest_Bank_AccountTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Dest_Bank_Account"));
+                                 
+                                        if (localDest_Bank_Account != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localDest_Bank_Account));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("Dest_Bank_Account cannot be null!!");
+                                        }
+                                    } if (localDest_Bank_CtryTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "Dest_Bank_Ctry"));
+                                 
+                                        if (localDest_Bank_Ctry != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localDest_Bank_Ctry));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("Dest_Bank_Ctry cannot be null!!");
+                                        }
+                                    }
+
+                return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(qName, elementList.toArray(), attribList.toArray());
+            
+            
+
+        }
+
+  
 
      /**
       *  Factory class that keeps the parse method
       */
     public static class Factory{
-        private static org.apache.commons.logging.Log log = org.apache.commons.logging.LogFactory.getLog(Factory.class);
 
         
         
@@ -4550,7 +5209,6 @@
                 new GetTransaction();
 
             int event;
-            javax.xml.namespace.QName currentQName = null;
             java.lang.String nillableValue = null;
             java.lang.String prefix ="";
             java.lang.String namespaceuri ="";
@@ -4559,7 +5217,6 @@
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                currentQName = reader.getName();
                 
                 if (reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","type")!=null){
                   java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
@@ -4601,7 +5258,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Acquirer_id_DE32").equals(reader.getName()) || new javax.xml.namespace.QName("","Acquirer_id_DE32").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Acquirer_id_DE32").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -4625,7 +5282,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","ActBal").equals(reader.getName()) || new javax.xml.namespace.QName("","ActBal").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","ActBal").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -4643,14 +5300,14 @@
                               }  // End of if for expected property start element
                                 
                                 else{
-                                    // 1 - A start element we are not expecting indicates an invalid parameter was passed
+                                    // A start element we are not expecting indicates an invalid parameter was passed
                                     throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
                                 }
                             
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Additional_Amt_DE54").equals(reader.getName()) || new javax.xml.namespace.QName("","Additional_Amt_DE54").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Additional_Amt_DE54").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -4674,7 +5331,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Amt_Tran_Fee_DE28").equals(reader.getName()) || new javax.xml.namespace.QName("","Amt_Tran_Fee_DE28").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Amt_Tran_Fee_DE28").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -4698,7 +5355,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Auth_Code_DE38").equals(reader.getName()) || new javax.xml.namespace.QName("","Auth_Code_DE38").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Auth_Code_DE38").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -4722,7 +5379,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Avl_Bal").equals(reader.getName()) || new javax.xml.namespace.QName("","Avl_Bal").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Avl_Bal").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -4740,14 +5397,14 @@
                               }  // End of if for expected property start element
                                 
                                 else{
-                                    // 1 - A start element we are not expecting indicates an invalid parameter was passed
+                                    // A start element we are not expecting indicates an invalid parameter was passed
                                     throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
                                 }
                             
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Bill_Amt").equals(reader.getName()) || new javax.xml.namespace.QName("","Bill_Amt").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Bill_Amt").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -4765,14 +5422,14 @@
                               }  // End of if for expected property start element
                                 
                                 else{
-                                    // 1 - A start element we are not expecting indicates an invalid parameter was passed
+                                    // A start element we are not expecting indicates an invalid parameter was passed
                                     throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
                                 }
                             
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Bill_Ccy").equals(reader.getName()) || new javax.xml.namespace.QName("","Bill_Ccy").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Bill_Ccy").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -4796,7 +5453,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","BlkAmt").equals(reader.getName()) || new javax.xml.namespace.QName("","BlkAmt").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","BlkAmt").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -4814,14 +5471,14 @@
                               }  // End of if for expected property start element
                                 
                                 else{
-                                    // 1 - A start element we are not expecting indicates an invalid parameter was passed
+                                    // A start element we are not expecting indicates an invalid parameter was passed
                                     throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
                                 }
                             
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Cust_Ref").equals(reader.getName()) || new javax.xml.namespace.QName("","Cust_Ref").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Cust_Ref").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -4845,7 +5502,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","CVV2").equals(reader.getName()) || new javax.xml.namespace.QName("","CVV2").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","CVV2").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -4869,7 +5526,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Expiry_Date").equals(reader.getName()) || new javax.xml.namespace.QName("","Expiry_Date").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Expiry_Date").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -4893,7 +5550,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","FX_Pad").equals(reader.getName()) || new javax.xml.namespace.QName("","FX_Pad").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","FX_Pad").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -4911,14 +5568,14 @@
                               }  // End of if for expected property start element
                                 
                                 else{
-                                    // 1 - A start element we are not expecting indicates an invalid parameter was passed
+                                    // A start element we are not expecting indicates an invalid parameter was passed
                                     throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
                                 }
                             
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Fee_Fixed").equals(reader.getName()) || new javax.xml.namespace.QName("","Fee_Fixed").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Fee_Fixed").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -4936,14 +5593,14 @@
                               }  // End of if for expected property start element
                                 
                                 else{
-                                    // 1 - A start element we are not expecting indicates an invalid parameter was passed
+                                    // A start element we are not expecting indicates an invalid parameter was passed
                                     throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
                                 }
                             
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Fee_Rate").equals(reader.getName()) || new javax.xml.namespace.QName("","Fee_Rate").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Fee_Rate").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -4961,14 +5618,14 @@
                               }  // End of if for expected property start element
                                 
                                 else{
-                                    // 1 - A start element we are not expecting indicates an invalid parameter was passed
+                                    // A start element we are not expecting indicates an invalid parameter was passed
                                     throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
                                 }
                             
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","LoadSRC").equals(reader.getName()) || new javax.xml.namespace.QName("","LoadSRC").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","LoadSRC").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -4992,7 +5649,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","LoadType").equals(reader.getName()) || new javax.xml.namespace.QName("","LoadType").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","LoadType").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5016,7 +5673,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","MCC_Code").equals(reader.getName()) || new javax.xml.namespace.QName("","MCC_Code").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","MCC_Code").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5040,7 +5697,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","MCC_Desc").equals(reader.getName()) || new javax.xml.namespace.QName("","MCC_Desc").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","MCC_Desc").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5064,7 +5721,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","MCC_Pad").equals(reader.getName()) || new javax.xml.namespace.QName("","MCC_Pad").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","MCC_Pad").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5082,14 +5739,14 @@
                               }  // End of if for expected property start element
                                 
                                 else{
-                                    // 1 - A start element we are not expecting indicates an invalid parameter was passed
+                                    // A start element we are not expecting indicates an invalid parameter was passed
                                     throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
                                 }
                             
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Merch_ID_DE42").equals(reader.getName()) || new javax.xml.namespace.QName("","Merch_ID_DE42").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Merch_ID_DE42").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5113,7 +5770,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Merch_Name_DE43").equals(reader.getName()) || new javax.xml.namespace.QName("","Merch_Name_DE43").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Merch_Name_DE43").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5137,7 +5794,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Note").equals(reader.getName()) || new javax.xml.namespace.QName("","Note").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Note").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5161,7 +5818,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","PAN_Sequence_Number").equals(reader.getName()) || new javax.xml.namespace.QName("","PAN_Sequence_Number").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","PAN_Sequence_Number").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5185,7 +5842,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","PIN").equals(reader.getName()) || new javax.xml.namespace.QName("","PIN").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","PIN").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5209,7 +5866,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","PIN_Enc_Algorithm").equals(reader.getName()) || new javax.xml.namespace.QName("","PIN_Enc_Algorithm").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","PIN_Enc_Algorithm").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5233,7 +5890,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","PIN_Format").equals(reader.getName()) || new javax.xml.namespace.QName("","PIN_Format").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","PIN_Format").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5257,7 +5914,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","PIN_Key_Index").equals(reader.getName()) || new javax.xml.namespace.QName("","PIN_Key_Index").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","PIN_Key_Index").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5281,7 +5938,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","POS_Data_DE22").equals(reader.getName()) || new javax.xml.namespace.QName("","POS_Data_DE22").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","POS_Data_DE22").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5305,7 +5962,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","POS_Data_DE61").equals(reader.getName()) || new javax.xml.namespace.QName("","POS_Data_DE61").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","POS_Data_DE61").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5329,7 +5986,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","POS_Termnl_DE41").equals(reader.getName()) || new javax.xml.namespace.QName("","POS_Termnl_DE41").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","POS_Termnl_DE41").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5353,7 +6010,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","POS_Time_DE12").equals(reader.getName()) || new javax.xml.namespace.QName("","POS_Time_DE12").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","POS_Time_DE12").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5377,7 +6034,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Proc_Code").equals(reader.getName()) || new javax.xml.namespace.QName("","Proc_Code").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Proc_Code").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5401,7 +6058,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Resp_Code_DE39").equals(reader.getName()) || new javax.xml.namespace.QName("","Resp_Code_DE39").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Resp_Code_DE39").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5425,7 +6082,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Ret_Ref_No_DE37").equals(reader.getName()) || new javax.xml.namespace.QName("","Ret_Ref_No_DE37").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Ret_Ref_No_DE37").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5449,7 +6106,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Settle_Amt").equals(reader.getName()) || new javax.xml.namespace.QName("","Settle_Amt").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Settle_Amt").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5467,14 +6124,14 @@
                               }  // End of if for expected property start element
                                 
                                 else{
-                                    // 1 - A start element we are not expecting indicates an invalid parameter was passed
+                                    // A start element we are not expecting indicates an invalid parameter was passed
                                     throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
                                 }
                             
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Settle_Ccy").equals(reader.getName()) || new javax.xml.namespace.QName("","Settle_Ccy").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Settle_Ccy").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5498,7 +6155,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Status_Code").equals(reader.getName()) || new javax.xml.namespace.QName("","Status_Code").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Status_Code").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5522,7 +6179,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Token").equals(reader.getName()) || new javax.xml.namespace.QName("","Token").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Token").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5546,7 +6203,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Trans_link").equals(reader.getName()) || new javax.xml.namespace.QName("","Trans_link").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Trans_link").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5570,7 +6227,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Txn_Amt").equals(reader.getName()) || new javax.xml.namespace.QName("","Txn_Amt").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Txn_Amt").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5588,14 +6245,14 @@
                               }  // End of if for expected property start element
                                 
                                 else{
-                                    // 1 - A start element we are not expecting indicates an invalid parameter was passed
+                                    // A start element we are not expecting indicates an invalid parameter was passed
                                     throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
                                 }
                             
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Txn_CCy").equals(reader.getName()) || new javax.xml.namespace.QName("","Txn_CCy").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Txn_CCy").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5619,7 +6276,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Txn_Ctry").equals(reader.getName()) || new javax.xml.namespace.QName("","Txn_Ctry").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Txn_Ctry").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5643,7 +6300,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Txn_Desc").equals(reader.getName()) || new javax.xml.namespace.QName("","Txn_Desc").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Txn_Desc").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5667,7 +6324,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Txn_GPS_Date").equals(reader.getName()) || new javax.xml.namespace.QName("","Txn_GPS_Date").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Txn_GPS_Date").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5691,7 +6348,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","TXn_ID").equals(reader.getName()) || new javax.xml.namespace.QName("","TXn_ID").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","TXn_ID").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5709,14 +6366,14 @@
                               }  // End of if for expected property start element
                                 
                                 else{
-                                    // 1 - A start element we are not expecting indicates an invalid parameter was passed
+                                    // A start element we are not expecting indicates an invalid parameter was passed
                                     throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
                                 }
                             
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Txn_Stat_Code").equals(reader.getName()) || new javax.xml.namespace.QName("","Txn_Stat_Code").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Txn_Stat_Code").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5740,7 +6397,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","TXN_Time_DE07").equals(reader.getName()) || new javax.xml.namespace.QName("","TXN_Time_DE07").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","TXN_Time_DE07").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5764,7 +6421,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Txn_Type").equals(reader.getName()) || new javax.xml.namespace.QName("","Txn_Type").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Txn_Type").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5788,7 +6445,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Additional_Data_DE48").equals(reader.getName()) || new javax.xml.namespace.QName("","Additional_Data_DE48").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Additional_Data_DE48").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5812,7 +6469,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Authorised_by_GPS").equals(reader.getName()) || new javax.xml.namespace.QName("","Authorised_by_GPS").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Authorised_by_GPS").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5836,7 +6493,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","AVS_Result").equals(reader.getName()) || new javax.xml.namespace.QName("","AVS_Result").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","AVS_Result").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5860,7 +6517,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","CU_Group").equals(reader.getName()) || new javax.xml.namespace.QName("","CU_Group").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","CU_Group").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5884,7 +6541,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","InstCode").equals(reader.getName()) || new javax.xml.namespace.QName("","InstCode").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","InstCode").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5908,7 +6565,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","MTID").equals(reader.getName()) || new javax.xml.namespace.QName("","MTID").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","MTID").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5932,7 +6589,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","ProductID").equals(reader.getName()) || new javax.xml.namespace.QName("","ProductID").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","ProductID").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5950,14 +6607,14 @@
                               }  // End of if for expected property start element
                                 
                                 else{
-                                    // 1 - A start element we are not expecting indicates an invalid parameter was passed
+                                    // A start element we are not expecting indicates an invalid parameter was passed
                                     throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
                                 }
                             
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Record_Data_DE120").equals(reader.getName()) || new javax.xml.namespace.QName("","Record_Data_DE120").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Record_Data_DE120").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5981,7 +6638,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","SubBIN").equals(reader.getName()) || new javax.xml.namespace.QName("","SubBIN").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","SubBIN").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -5999,14 +6656,14 @@
                               }  // End of if for expected property start element
                                 
                                 else{
-                                    // 1 - A start element we are not expecting indicates an invalid parameter was passed
+                                    // A start element we are not expecting indicates an invalid parameter was passed
                                     throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
                                 }
                             
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","TLogIDOrg").equals(reader.getName()) || new javax.xml.namespace.QName("","TLogIDOrg").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","TLogIDOrg").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -6030,7 +6687,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","VL_Group").equals(reader.getName()) || new javax.xml.namespace.QName("","VL_Group").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","VL_Group").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -6054,7 +6711,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Dom_Fee_Fixed").equals(reader.getName()) || new javax.xml.namespace.QName("","Dom_Fee_Fixed").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Dom_Fee_Fixed").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -6078,7 +6735,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Non_Dom_Fee_Fixed").equals(reader.getName()) || new javax.xml.namespace.QName("","Non_Dom_Fee_Fixed").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Non_Dom_Fee_Fixed").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -6102,7 +6759,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Fx_Fee_Fixed").equals(reader.getName()) || new javax.xml.namespace.QName("","Fx_Fee_Fixed").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Fx_Fee_Fixed").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -6126,7 +6783,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Other_Fee_Amt").equals(reader.getName()) || new javax.xml.namespace.QName("","Other_Fee_Amt").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Other_Fee_Amt").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -6150,7 +6807,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Fx_Fee_Rate").equals(reader.getName()) || new javax.xml.namespace.QName("","Fx_Fee_Rate").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Fx_Fee_Rate").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -6174,7 +6831,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Dom_Fee_Rate").equals(reader.getName()) || new javax.xml.namespace.QName("","Dom_Fee_Rate").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Dom_Fee_Rate").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -6198,7 +6855,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Non_Dom_Fee_Rate").equals(reader.getName()) || new javax.xml.namespace.QName("","Non_Dom_Fee_Rate").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Non_Dom_Fee_Rate").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -6222,7 +6879,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Additional_Data_DE124").equals(reader.getName()) || new javax.xml.namespace.QName("","Additional_Data_DE124").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Additional_Data_DE124").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -6246,7 +6903,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","SendingAttemptCount").equals(reader.getName()) || new javax.xml.namespace.QName("","SendingAttemptCount").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","SendingAttemptCount").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -6264,14 +6921,14 @@
                               }  // End of if for expected property start element
                                 
                                 else{
-                                    // 1 - A start element we are not expecting indicates an invalid parameter was passed
+                                    // A start element we are not expecting indicates an invalid parameter was passed
                                     throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
                                 }
                             
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Source_Bank_Ctry").equals(reader.getName()) || new javax.xml.namespace.QName("","Source_Bank_Ctry").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Source_Bank_Ctry").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -6295,7 +6952,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Source_Bank_Account_Format").equals(reader.getName()) || new javax.xml.namespace.QName("","Source_Bank_Account_Format").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Source_Bank_Account_Format").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -6319,7 +6976,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Source_Bank_Account").equals(reader.getName()) || new javax.xml.namespace.QName("","Source_Bank_Account").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Source_Bank_Account").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -6343,7 +7000,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Dest_Bank_Account_Format").equals(reader.getName()) || new javax.xml.namespace.QName("","Dest_Bank_Account_Format").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Dest_Bank_Account_Format").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -6367,7 +7024,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Dest_Bank_Account").equals(reader.getName()) || new javax.xml.namespace.QName("","Dest_Bank_Account").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Dest_Bank_Account").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -6391,7 +7048,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Dest_Bank_Ctry").equals(reader.getName()) || new javax.xml.namespace.QName("","Dest_Bank_Ctry").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","Dest_Bank_Ctry").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
@@ -6416,10 +7073,9 @@
                                 reader.next();
                             
                                 if (reader.isStartElement())
-                                // 2 - A start element we are not expecting indicates a trailing invalid property
-                                
-                                    throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
-                                
+                                // A start element we are not expecting indicates a trailing invalid property
+                                throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
+                            
 
 
 

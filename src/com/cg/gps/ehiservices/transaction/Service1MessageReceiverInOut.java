@@ -3,7 +3,7 @@
  * Service1MessageReceiverInOut.java
  *
  * This file was auto-generated from WSDL
- * by the Apache Axis2 version: 1.7.3  Built on : May 30, 2016 (04:08:57 BST)
+ * by the Apache Axis2 version: 1.6.3  Built on : Jun 27, 2015 (11:17:49 BST)
  */
         package com.cg.gps.ehiservices.transaction;
 
@@ -43,7 +43,8 @@
 	                        org.tempuri.GetTransaction wrappedParam =
                                                              (org.tempuri.GetTransaction)fromOM(
                                     msgContext.getEnvelope().getBody().getFirstElement(),
-                                    org.tempuri.GetTransaction.class);
+                                    org.tempuri.GetTransaction.class,
+                                    getEnvelopeNamespaces(msgContext.getEnvelope()));
                                                 
                                                getTransactionResponse7 =
                                                    
@@ -51,8 +52,8 @@
                                                          skel.getTransaction(wrappedParam)
                                                     ;
                                             
-                                        envelope = toEnvelope(getSOAPFactory(msgContext), getTransactionResponse7, false,
-                                                    new javax.xml.namespace.QName("http://tempuri.org/", "GetTransactionResponse"));
+                                        envelope = toEnvelope(getSOAPFactory(msgContext), getTransactionResponse7, false, new javax.xml.namespace.QName("http://tempuri.org/",
+                                                    "getTransaction"));
                                     
             } else {
               throw new java.lang.RuntimeException("method not found");
@@ -96,7 +97,7 @@
 
             }
         
-                    private  org.apache.axiom.soap.SOAPEnvelope toEnvelope(org.apache.axiom.soap.SOAPFactory factory, org.tempuri.GetTransactionResponse param, boolean optimizeContent, javax.xml.namespace.QName elementQName)
+                    private  org.apache.axiom.soap.SOAPEnvelope toEnvelope(org.apache.axiom.soap.SOAPFactory factory, org.tempuri.GetTransactionResponse param, boolean optimizeContent, javax.xml.namespace.QName methodQName)
                         throws org.apache.axis2.AxisFault{
                       try{
                           org.apache.axiom.soap.SOAPEnvelope emptyEnvelope = factory.getDefaultEnvelope();
@@ -127,7 +128,8 @@
 
         private  java.lang.Object fromOM(
         org.apache.axiom.om.OMElement param,
-        java.lang.Class type) throws org.apache.axis2.AxisFault{
+        java.lang.Class type,
+        java.util.Map extraNamespaces) throws org.apache.axis2.AxisFault{
 
         try {
         
@@ -154,6 +156,19 @@
 
 
     
+
+        /**
+        *  A utility method that copies the namepaces from the SOAPEnvelope
+        */
+        private java.util.Map getEnvelopeNamespaces(org.apache.axiom.soap.SOAPEnvelope env){
+        java.util.Map returnMap = new java.util.HashMap();
+        java.util.Iterator namespaceIterator = env.getAllDeclaredNamespaces();
+        while (namespaceIterator.hasNext()) {
+        org.apache.axiom.om.OMNamespace ns = (org.apache.axiom.om.OMNamespace) namespaceIterator.next();
+        returnMap.put(ns.getPrefix(),ns.getNamespaceURI());
+        }
+        return returnMap;
+        }
 
         private org.apache.axis2.AxisFault createAxisFault(java.lang.Exception e) {
         org.apache.axis2.AxisFault f;

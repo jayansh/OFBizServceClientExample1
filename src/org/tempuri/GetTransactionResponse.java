@@ -3,7 +3,7 @@
  * GetTransactionResponse.java
  *
  * This file was auto-generated from WSDL
- * by the Apache Axis2 version: 1.7.3  Built on : May 30, 2016 (04:09:26 BST)
+ * by the Apache Axis2 version: 1.6.3  Built on : Jun 27, 2015 (11:18:31 BST)
  */
 
             
@@ -69,7 +69,9 @@
 
 
         
-               return factory.createOMElement(new org.apache.axis2.databinding.ADBDataSource(this,MY_QNAME));
+               org.apache.axiom.om.OMDataSource dataSource =
+                       new org.apache.axis2.databinding.ADBDataSource(this,MY_QNAME);
+               return factory.createOMElement(dataSource,MY_QNAME);
             
         }
 
@@ -137,7 +139,7 @@
                                        javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
             java.lang.String writerPrefix = xmlWriter.getPrefix(namespace);
             if (writerPrefix != null) {
-                xmlWriter.writeStartElement(writerPrefix, localPart, namespace);
+                xmlWriter.writeStartElement(namespace, localPart);
             } else {
                 if (namespace.length() == 0) {
                     prefix = "";
@@ -156,14 +158,11 @@
          */
         private void writeAttribute(java.lang.String prefix,java.lang.String namespace,java.lang.String attName,
                                     java.lang.String attValue,javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException{
-            java.lang.String writerPrefix = xmlWriter.getPrefix(namespace);
-            if (writerPrefix != null) {
-                xmlWriter.writeAttribute(writerPrefix, namespace,attName,attValue);
-            } else {
+            if (xmlWriter.getPrefix(namespace) == null) {
                 xmlWriter.writeNamespace(prefix, namespace);
                 xmlWriter.setPrefix(prefix, namespace);
-                xmlWriter.writeAttribute(prefix, namespace,attName,attValue);
             }
+            xmlWriter.writeAttribute(namespace,attName,attValue);
         }
 
         /**
@@ -174,7 +173,8 @@
             if (namespace.equals("")) {
                 xmlWriter.writeAttribute(attName,attValue);
             } else {
-                xmlWriter.writeAttribute(registerPrefix(xmlWriter, namespace), namespace,attName,attValue);
+                registerPrefix(xmlWriter, namespace);
+                xmlWriter.writeAttribute(namespace,attName,attValue);
             }
         }
 
@@ -201,7 +201,7 @@
                     xmlWriter.writeAttribute(attName, attributeValue);
                 } else {
                     registerPrefix(xmlWriter, namespace);
-                    xmlWriter.writeAttribute(attributePrefix, namespace, attName, attributeValue);
+                    xmlWriter.writeAttribute(namespace, attName, attributeValue);
                 }
             }
         /**
@@ -292,12 +292,41 @@
 
 
   
+        /**
+        * databinding method to get an XML representation of this object
+        *
+        */
+        public javax.xml.stream.XMLStreamReader getPullParser(javax.xml.namespace.QName qName)
+                    throws org.apache.axis2.databinding.ADBException{
+
+
+        
+                 java.util.ArrayList elementList = new java.util.ArrayList();
+                 java.util.ArrayList attribList = new java.util.ArrayList();
+
+                
+                            elementList.add(new javax.xml.namespace.QName("http://tempuri.org/",
+                                                                      "GetTransactionResult"));
+                            
+                            
+                                    if (localGetTransactionResult==null){
+                                         throw new org.apache.axis2.databinding.ADBException("GetTransactionResult cannot be null!!");
+                                    }
+                                    elementList.add(localGetTransactionResult);
+                                
+
+                return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(qName, elementList.toArray(), attribList.toArray());
+            
+            
+
+        }
+
+  
 
      /**
       *  Factory class that keeps the parse method
       */
     public static class Factory{
-        private static org.apache.commons.logging.Log log = org.apache.commons.logging.LogFactory.getLog(Factory.class);
 
         
         
@@ -314,7 +343,6 @@
                 new GetTransactionResponse();
 
             int event;
-            javax.xml.namespace.QName currentQName = null;
             java.lang.String nillableValue = null;
             java.lang.String prefix ="";
             java.lang.String namespaceuri ="";
@@ -323,7 +351,6 @@
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                currentQName = reader.getName();
                 
                 if (reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","type")!=null){
                   java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
@@ -365,7 +392,7 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","GetTransactionResult").equals(reader.getName()) || new javax.xml.namespace.QName("","GetTransactionResult").equals(reader.getName()) ){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/","GetTransactionResult").equals(reader.getName())){
                                 
                                                 object.setGetTransactionResult(org.tempuri.ResponseMsg.Factory.parse(reader));
                                               
@@ -374,7 +401,7 @@
                               }  // End of if for expected property start element
                                 
                                 else{
-                                    // 1 - A start element we are not expecting indicates an invalid parameter was passed
+                                    // A start element we are not expecting indicates an invalid parameter was passed
                                     throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
                                 }
                               
@@ -382,10 +409,9 @@
                                 reader.next();
                             
                                 if (reader.isStartElement())
-                                // 2 - A start element we are not expecting indicates a trailing invalid property
-                                
-                                    throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
-                                
+                                // A start element we are not expecting indicates a trailing invalid property
+                                throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
+                            
 
 
 
