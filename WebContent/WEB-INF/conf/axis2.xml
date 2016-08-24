@@ -99,7 +99,7 @@
     <!-- Following parameter will suppress generation of SOAP 1.2 bindings in auto-generated WSDL files -->
     <parameter name="disableSOAP12" locked="true">false</parameter>
 
-    <!-- Added by jay this parameter shows service list (Fix for "No transportReceiver for org.apache.axis2.transport.http.AxisServletListener found." -->
+    <!-- Added by jay this parameter shows service list -->
     <parameter name="manageTransportSession" locked="false">true</parameter>
     <!--POJO deployer , this will alow users to drop .class file and make that into a service-->
     <deployer extension=".class" directory="pojo" class="org.apache.axis2.deployment.POJODeployer"/>
