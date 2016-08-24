@@ -3,7 +3,7 @@
  * GetTransaction.java
  *
  * This file was auto-generated from WSDL
- * by the Apache Axis2 version: 1.6.3  Built on : Jun 27, 2015 (11:18:31 BST)
+ * by the Apache Axis2 version: 1.7.3  Built on : May 30, 2016 (04:09:26 BST)
  */
 
 package org.tempuri;
@@ -2784,8 +2784,7 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
     public org.apache.axiom.om.OMElement getOMElement(final javax.xml.namespace.QName parentQName,
             final org.apache.axiom.om.OMFactory factory) throws org.apache.axis2.databinding.ADBException {
 
-        org.apache.axiom.om.OMDataSource dataSource = new org.apache.axis2.databinding.ADBDataSource(this, MY_QNAME);
-        return factory.createOMElement(dataSource, MY_QNAME);
+        return factory.createOMElement(new org.apache.axis2.databinding.ADBDataSource(this, MY_QNAME));
 
     }
 
@@ -4049,7 +4048,7 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
             javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
         java.lang.String writerPrefix = xmlWriter.getPrefix(namespace);
         if (writerPrefix != null) {
-            xmlWriter.writeStartElement(namespace, localPart);
+            xmlWriter.writeStartElement(writerPrefix, localPart, namespace);
         } else {
             if (namespace.length() == 0) {
                 prefix = "";
@@ -4069,11 +4068,14 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
     private void writeAttribute(java.lang.String prefix, java.lang.String namespace, java.lang.String attName,
             java.lang.String attValue, javax.xml.stream.XMLStreamWriter xmlWriter)
             throws javax.xml.stream.XMLStreamException {
-        if (xmlWriter.getPrefix(namespace) == null) {
+        java.lang.String writerPrefix = xmlWriter.getPrefix(namespace);
+        if (writerPrefix != null) {
+            xmlWriter.writeAttribute(writerPrefix, namespace, attName, attValue);
+        } else {
             xmlWriter.writeNamespace(prefix, namespace);
             xmlWriter.setPrefix(prefix, namespace);
+            xmlWriter.writeAttribute(prefix, namespace, attName, attValue);
         }
-        xmlWriter.writeAttribute(namespace, attName, attValue);
     }
 
     /**
@@ -4084,8 +4086,7 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
         if (namespace.equals("")) {
             xmlWriter.writeAttribute(attName, attValue);
         } else {
-            registerPrefix(xmlWriter, namespace);
-            xmlWriter.writeAttribute(namespace, attName, attValue);
+            xmlWriter.writeAttribute(registerPrefix(xmlWriter, namespace), namespace, attName, attValue);
         }
     }
 
@@ -4112,7 +4113,7 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
             xmlWriter.writeAttribute(attName, attributeValue);
         } else {
             registerPrefix(xmlWriter, namespace);
-            xmlWriter.writeAttribute(namespace, attName, attributeValue);
+            xmlWriter.writeAttribute(attributePrefix, namespace, attName, attributeValue);
         }
     }
 
@@ -4205,10 +4206,6 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
         return prefix;
     }
 
-    /**
-     * databinding method to get an XML representation of this object
-     *
-     */
     public javax.xml.stream.XMLStreamReader getPullParser(javax.xml.namespace.QName qName)
             throws org.apache.axis2.databinding.ADBException {
 
@@ -4843,6 +4840,7 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
      * Factory class that keeps the parse method
      */
     public static class Factory {
+        private static org.apache.commons.logging.Log log = org.apache.commons.logging.LogFactory.getLog(Factory.class);
 
         /**
          * static method to create the object Precondition: If this object is an
@@ -4858,6 +4856,7 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
             GetTransaction object = new GetTransaction();
 
             int event;
+            javax.xml.namespace.QName currentQName = null;
             java.lang.String nillableValue = null;
             java.lang.String prefix = "";
             java.lang.String namespaceuri = "";
@@ -4865,6 +4864,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
 
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
+
+                currentQName = reader.getName();
 
                 if (reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "type") != null) {
                     java.lang.String fullTypeName = reader
@@ -4897,8 +4898,10 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/", "Acquirer_id_DE32")
-                        .equals(reader.getName())) {
+                if (reader.isStartElement()
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "Acquirer_id_DE32")
+                                .equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Acquirer_id_DE32").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -4923,7 +4926,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                     reader.next();
 
                 if (reader.isStartElement()
-                        && new javax.xml.namespace.QName("http://tempuri.org/", "ActBal").equals(reader.getName())) {
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "ActBal").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "ActBal").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -4940,7 +4944,7 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 } // End of if for expected property start element
 
                 else {
-                    // A start element we are not expecting indicates an invalid parameter was passed
+                    // 1 - A start element we are not expecting indicates an invalid parameter was passed
                     throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
                 }
 
@@ -4949,7 +4953,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
 
                 if (reader.isStartElement()
                         && new javax.xml.namespace.QName("http://tempuri.org/", "Additional_Amt_DE54")
-                                .equals(reader.getName())) {
+                                .equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Additional_Amt_DE54").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -4973,8 +4978,10 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/", "Amt_Tran_Fee_DE28")
-                        .equals(reader.getName())) {
+                if (reader.isStartElement()
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "Amt_Tran_Fee_DE28")
+                                .equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Amt_Tran_Fee_DE28").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -4998,8 +5005,10 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/", "Auth_Code_DE38")
-                        .equals(reader.getName())) {
+                if (reader.isStartElement()
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "Auth_Code_DE38")
+                                .equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Auth_Code_DE38").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5023,7 +5032,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                     reader.next();
 
                 if (reader.isStartElement()
-                        && new javax.xml.namespace.QName("http://tempuri.org/", "Avl_Bal").equals(reader.getName())) {
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "Avl_Bal").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Avl_Bal").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5040,7 +5050,7 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 } // End of if for expected property start element
 
                 else {
-                    // A start element we are not expecting indicates an invalid parameter was passed
+                    // 1 - A start element we are not expecting indicates an invalid parameter was passed
                     throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
                 }
 
@@ -5048,7 +5058,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                     reader.next();
 
                 if (reader.isStartElement()
-                        && new javax.xml.namespace.QName("http://tempuri.org/", "Bill_Amt").equals(reader.getName())) {
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "Bill_Amt").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Bill_Amt").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5065,7 +5076,7 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 } // End of if for expected property start element
 
                 else {
-                    // A start element we are not expecting indicates an invalid parameter was passed
+                    // 1 - A start element we are not expecting indicates an invalid parameter was passed
                     throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
                 }
 
@@ -5073,7 +5084,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                     reader.next();
 
                 if (reader.isStartElement()
-                        && new javax.xml.namespace.QName("http://tempuri.org/", "Bill_Ccy").equals(reader.getName())) {
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "Bill_Ccy").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Bill_Ccy").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5097,7 +5109,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                     reader.next();
 
                 if (reader.isStartElement()
-                        && new javax.xml.namespace.QName("http://tempuri.org/", "BlkAmt").equals(reader.getName())) {
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "BlkAmt").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "BlkAmt").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5114,7 +5127,7 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 } // End of if for expected property start element
 
                 else {
-                    // A start element we are not expecting indicates an invalid parameter was passed
+                    // 1 - A start element we are not expecting indicates an invalid parameter was passed
                     throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
                 }
 
@@ -5122,7 +5135,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                     reader.next();
 
                 if (reader.isStartElement()
-                        && new javax.xml.namespace.QName("http://tempuri.org/", "Cust_Ref").equals(reader.getName())) {
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "Cust_Ref").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Cust_Ref").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5146,7 +5160,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                     reader.next();
 
                 if (reader.isStartElement()
-                        && new javax.xml.namespace.QName("http://tempuri.org/", "CVV2").equals(reader.getName())) {
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "CVV2").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "CVV2").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5169,8 +5184,9 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/", "Expiry_Date")
-                        .equals(reader.getName())) {
+                if (reader.isStartElement()
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "Expiry_Date").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Expiry_Date").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5194,7 +5210,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                     reader.next();
 
                 if (reader.isStartElement()
-                        && new javax.xml.namespace.QName("http://tempuri.org/", "FX_Pad").equals(reader.getName())) {
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "FX_Pad").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "FX_Pad").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5211,7 +5228,7 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 } // End of if for expected property start element
 
                 else {
-                    // A start element we are not expecting indicates an invalid parameter was passed
+                    // 1 - A start element we are not expecting indicates an invalid parameter was passed
                     throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
                 }
 
@@ -5219,7 +5236,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                     reader.next();
 
                 if (reader.isStartElement()
-                        && new javax.xml.namespace.QName("http://tempuri.org/", "Fee_Fixed").equals(reader.getName())) {
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "Fee_Fixed").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Fee_Fixed").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5236,7 +5254,7 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 } // End of if for expected property start element
 
                 else {
-                    // A start element we are not expecting indicates an invalid parameter was passed
+                    // 1 - A start element we are not expecting indicates an invalid parameter was passed
                     throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
                 }
 
@@ -5244,7 +5262,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                     reader.next();
 
                 if (reader.isStartElement()
-                        && new javax.xml.namespace.QName("http://tempuri.org/", "Fee_Rate").equals(reader.getName())) {
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "Fee_Rate").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Fee_Rate").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5261,7 +5280,7 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 } // End of if for expected property start element
 
                 else {
-                    // A start element we are not expecting indicates an invalid parameter was passed
+                    // 1 - A start element we are not expecting indicates an invalid parameter was passed
                     throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
                 }
 
@@ -5269,7 +5288,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                     reader.next();
 
                 if (reader.isStartElement()
-                        && new javax.xml.namespace.QName("http://tempuri.org/", "LoadSRC").equals(reader.getName())) {
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "LoadSRC").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "LoadSRC").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5293,7 +5313,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                     reader.next();
 
                 if (reader.isStartElement()
-                        && new javax.xml.namespace.QName("http://tempuri.org/", "LoadType").equals(reader.getName())) {
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "LoadType").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "LoadType").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5317,7 +5338,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                     reader.next();
 
                 if (reader.isStartElement()
-                        && new javax.xml.namespace.QName("http://tempuri.org/", "MCC_Code").equals(reader.getName())) {
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "MCC_Code").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "MCC_Code").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5341,7 +5363,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                     reader.next();
 
                 if (reader.isStartElement()
-                        && new javax.xml.namespace.QName("http://tempuri.org/", "MCC_Desc").equals(reader.getName())) {
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "MCC_Desc").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "MCC_Desc").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5365,7 +5388,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                     reader.next();
 
                 if (reader.isStartElement()
-                        && new javax.xml.namespace.QName("http://tempuri.org/", "MCC_Pad").equals(reader.getName())) {
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "MCC_Pad").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "MCC_Pad").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5382,15 +5406,17 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 } // End of if for expected property start element
 
                 else {
-                    // A start element we are not expecting indicates an invalid parameter was passed
+                    // 1 - A start element we are not expecting indicates an invalid parameter was passed
                     throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
                 }
 
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/", "Merch_ID_DE42")
-                        .equals(reader.getName())) {
+                if (reader.isStartElement()
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "Merch_ID_DE42")
+                                .equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Merch_ID_DE42").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5413,8 +5439,10 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/", "Merch_Name_DE43")
-                        .equals(reader.getName())) {
+                if (reader.isStartElement()
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "Merch_Name_DE43")
+                                .equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Merch_Name_DE43").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5439,7 +5467,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                     reader.next();
 
                 if (reader.isStartElement()
-                        && new javax.xml.namespace.QName("http://tempuri.org/", "Note").equals(reader.getName())) {
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "Note").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Note").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5464,7 +5493,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
 
                 if (reader.isStartElement()
                         && new javax.xml.namespace.QName("http://tempuri.org/", "PAN_Sequence_Number")
-                                .equals(reader.getName())) {
+                                .equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "PAN_Sequence_Number").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5489,7 +5519,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                     reader.next();
 
                 if (reader.isStartElement()
-                        && new javax.xml.namespace.QName("http://tempuri.org/", "PIN").equals(reader.getName())) {
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "PIN").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "PIN").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5512,8 +5543,10 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/", "PIN_Enc_Algorithm")
-                        .equals(reader.getName())) {
+                if (reader.isStartElement()
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "PIN_Enc_Algorithm")
+                                .equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "PIN_Enc_Algorithm").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5537,8 +5570,9 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/", "PIN_Format")
-                        .equals(reader.getName())) {
+                if (reader.isStartElement()
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "PIN_Format").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "PIN_Format").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5561,8 +5595,10 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/", "PIN_Key_Index")
-                        .equals(reader.getName())) {
+                if (reader.isStartElement()
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "PIN_Key_Index")
+                                .equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "PIN_Key_Index").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5585,8 +5621,10 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/", "POS_Data_DE22")
-                        .equals(reader.getName())) {
+                if (reader.isStartElement()
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "POS_Data_DE22")
+                                .equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "POS_Data_DE22").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5609,8 +5647,10 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/", "POS_Data_DE61")
-                        .equals(reader.getName())) {
+                if (reader.isStartElement()
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "POS_Data_DE61")
+                                .equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "POS_Data_DE61").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5633,8 +5673,10 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/", "POS_Termnl_DE41")
-                        .equals(reader.getName())) {
+                if (reader.isStartElement()
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "POS_Termnl_DE41")
+                                .equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "POS_Termnl_DE41").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5658,8 +5700,10 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/", "POS_Time_DE12")
-                        .equals(reader.getName())) {
+                if (reader.isStartElement()
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "POS_Time_DE12")
+                                .equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "POS_Time_DE12").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5683,7 +5727,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                     reader.next();
 
                 if (reader.isStartElement()
-                        && new javax.xml.namespace.QName("http://tempuri.org/", "Proc_Code").equals(reader.getName())) {
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "Proc_Code").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Proc_Code").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5706,8 +5751,10 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/", "Resp_Code_DE39")
-                        .equals(reader.getName())) {
+                if (reader.isStartElement()
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "Resp_Code_DE39")
+                                .equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Resp_Code_DE39").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5730,8 +5777,10 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/", "Ret_Ref_No_DE37")
-                        .equals(reader.getName())) {
+                if (reader.isStartElement()
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "Ret_Ref_No_DE37")
+                                .equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Ret_Ref_No_DE37").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5755,8 +5804,9 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/", "Settle_Amt")
-                        .equals(reader.getName())) {
+                if (reader.isStartElement()
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "Settle_Amt").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Settle_Amt").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5773,15 +5823,16 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 } // End of if for expected property start element
 
                 else {
-                    // A start element we are not expecting indicates an invalid parameter was passed
+                    // 1 - A start element we are not expecting indicates an invalid parameter was passed
                     throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
                 }
 
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/", "Settle_Ccy")
-                        .equals(reader.getName())) {
+                if (reader.isStartElement()
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "Settle_Ccy").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Settle_Ccy").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5804,8 +5855,9 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/", "Status_Code")
-                        .equals(reader.getName())) {
+                if (reader.isStartElement()
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "Status_Code").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Status_Code").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5829,7 +5881,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                     reader.next();
 
                 if (reader.isStartElement()
-                        && new javax.xml.namespace.QName("http://tempuri.org/", "Token").equals(reader.getName())) {
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "Token").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Token").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5852,8 +5905,9 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/", "Trans_link")
-                        .equals(reader.getName())) {
+                if (reader.isStartElement()
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "Trans_link").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Trans_link").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5877,7 +5931,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                     reader.next();
 
                 if (reader.isStartElement()
-                        && new javax.xml.namespace.QName("http://tempuri.org/", "Txn_Amt").equals(reader.getName())) {
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "Txn_Amt").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Txn_Amt").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5894,7 +5949,7 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 } // End of if for expected property start element
 
                 else {
-                    // A start element we are not expecting indicates an invalid parameter was passed
+                    // 1 - A start element we are not expecting indicates an invalid parameter was passed
                     throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
                 }
 
@@ -5902,7 +5957,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                     reader.next();
 
                 if (reader.isStartElement()
-                        && new javax.xml.namespace.QName("http://tempuri.org/", "Txn_CCy").equals(reader.getName())) {
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "Txn_CCy").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Txn_CCy").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5926,7 +5982,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                     reader.next();
 
                 if (reader.isStartElement()
-                        && new javax.xml.namespace.QName("http://tempuri.org/", "Txn_Ctry").equals(reader.getName())) {
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "Txn_Ctry").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Txn_Ctry").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5950,7 +6007,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                     reader.next();
 
                 if (reader.isStartElement()
-                        && new javax.xml.namespace.QName("http://tempuri.org/", "Txn_Desc").equals(reader.getName())) {
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "Txn_Desc").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Txn_Desc").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5973,8 +6031,9 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/", "Txn_GPS_Date")
-                        .equals(reader.getName())) {
+                if (reader.isStartElement()
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "Txn_GPS_Date").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Txn_GPS_Date").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -5998,7 +6057,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                     reader.next();
 
                 if (reader.isStartElement()
-                        && new javax.xml.namespace.QName("http://tempuri.org/", "TXn_ID").equals(reader.getName())) {
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "TXn_ID").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "TXn_ID").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -6015,15 +6075,17 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 } // End of if for expected property start element
 
                 else {
-                    // A start element we are not expecting indicates an invalid parameter was passed
+                    // 1 - A start element we are not expecting indicates an invalid parameter was passed
                     throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
                 }
 
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/", "Txn_Stat_Code")
-                        .equals(reader.getName())) {
+                if (reader.isStartElement()
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "Txn_Stat_Code")
+                                .equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Txn_Stat_Code").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -6046,8 +6108,10 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/", "TXN_Time_DE07")
-                        .equals(reader.getName())) {
+                if (reader.isStartElement()
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "TXN_Time_DE07")
+                                .equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "TXN_Time_DE07").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -6071,7 +6135,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                     reader.next();
 
                 if (reader.isStartElement()
-                        && new javax.xml.namespace.QName("http://tempuri.org/", "Txn_Type").equals(reader.getName())) {
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "Txn_Type").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Txn_Type").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -6096,7 +6161,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
 
                 if (reader.isStartElement()
                         && new javax.xml.namespace.QName("http://tempuri.org/", "Additional_Data_DE48")
-                                .equals(reader.getName())) {
+                                .equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Additional_Data_DE48").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -6120,8 +6186,10 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/", "Authorised_by_GPS")
-                        .equals(reader.getName())) {
+                if (reader.isStartElement()
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "Authorised_by_GPS")
+                                .equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Authorised_by_GPS").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -6145,8 +6213,9 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/", "AVS_Result")
-                        .equals(reader.getName())) {
+                if (reader.isStartElement()
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "AVS_Result").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "AVS_Result").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -6170,7 +6239,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                     reader.next();
 
                 if (reader.isStartElement()
-                        && new javax.xml.namespace.QName("http://tempuri.org/", "CU_Group").equals(reader.getName())) {
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "CU_Group").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "CU_Group").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -6194,7 +6264,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                     reader.next();
 
                 if (reader.isStartElement()
-                        && new javax.xml.namespace.QName("http://tempuri.org/", "InstCode").equals(reader.getName())) {
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "InstCode").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "InstCode").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -6218,7 +6289,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                     reader.next();
 
                 if (reader.isStartElement()
-                        && new javax.xml.namespace.QName("http://tempuri.org/", "MTID").equals(reader.getName())) {
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "MTID").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "MTID").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -6242,7 +6314,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                     reader.next();
 
                 if (reader.isStartElement()
-                        && new javax.xml.namespace.QName("http://tempuri.org/", "ProductID").equals(reader.getName())) {
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "ProductID").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "ProductID").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -6259,15 +6332,17 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 } // End of if for expected property start element
 
                 else {
-                    // A start element we are not expecting indicates an invalid parameter was passed
+                    // 1 - A start element we are not expecting indicates an invalid parameter was passed
                     throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
                 }
 
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/", "Record_Data_DE120")
-                        .equals(reader.getName())) {
+                if (reader.isStartElement()
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "Record_Data_DE120")
+                                .equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Record_Data_DE120").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -6292,7 +6367,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                     reader.next();
 
                 if (reader.isStartElement()
-                        && new javax.xml.namespace.QName("http://tempuri.org/", "SubBIN").equals(reader.getName())) {
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "SubBIN").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "SubBIN").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -6309,7 +6385,7 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 } // End of if for expected property start element
 
                 else {
-                    // A start element we are not expecting indicates an invalid parameter was passed
+                    // 1 - A start element we are not expecting indicates an invalid parameter was passed
                     throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
                 }
 
@@ -6317,7 +6393,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                     reader.next();
 
                 if (reader.isStartElement()
-                        && new javax.xml.namespace.QName("http://tempuri.org/", "TLogIDOrg").equals(reader.getName())) {
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "TLogIDOrg").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "TLogIDOrg").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -6341,7 +6418,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                     reader.next();
 
                 if (reader.isStartElement()
-                        && new javax.xml.namespace.QName("http://tempuri.org/", "VL_Group").equals(reader.getName())) {
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "VL_Group").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "VL_Group").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -6364,8 +6442,10 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/", "Dom_Fee_Fixed")
-                        .equals(reader.getName())) {
+                if (reader.isStartElement()
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "Dom_Fee_Fixed")
+                                .equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Dom_Fee_Fixed").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -6388,8 +6468,10 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/", "Non_Dom_Fee_Fixed")
-                        .equals(reader.getName())) {
+                if (reader.isStartElement()
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "Non_Dom_Fee_Fixed")
+                                .equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Non_Dom_Fee_Fixed").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -6413,8 +6495,9 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/", "Fx_Fee_Fixed")
-                        .equals(reader.getName())) {
+                if (reader.isStartElement()
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "Fx_Fee_Fixed").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Fx_Fee_Fixed").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -6437,8 +6520,10 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/", "Other_Fee_Amt")
-                        .equals(reader.getName())) {
+                if (reader.isStartElement()
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "Other_Fee_Amt")
+                                .equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Other_Fee_Amt").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -6461,8 +6546,9 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/", "Fx_Fee_Rate")
-                        .equals(reader.getName())) {
+                if (reader.isStartElement()
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "Fx_Fee_Rate").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Fx_Fee_Rate").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -6485,8 +6571,9 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/", "Dom_Fee_Rate")
-                        .equals(reader.getName())) {
+                if (reader.isStartElement()
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "Dom_Fee_Rate").equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Dom_Fee_Rate").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -6509,8 +6596,10 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/", "Non_Dom_Fee_Rate")
-                        .equals(reader.getName())) {
+                if (reader.isStartElement()
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "Non_Dom_Fee_Rate")
+                                .equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Non_Dom_Fee_Rate").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -6536,7 +6625,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
 
                 if (reader.isStartElement()
                         && new javax.xml.namespace.QName("http://tempuri.org/", "Additional_Data_DE124")
-                                .equals(reader.getName())) {
+                                .equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Additional_Data_DE124").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -6562,7 +6652,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
 
                 if (reader.isStartElement()
                         && new javax.xml.namespace.QName("http://tempuri.org/", "SendingAttemptCount")
-                                .equals(reader.getName())) {
+                                .equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "SendingAttemptCount").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -6580,15 +6671,17 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 } // End of if for expected property start element
 
                 else {
-                    // A start element we are not expecting indicates an invalid parameter was passed
+                    // 1 - A start element we are not expecting indicates an invalid parameter was passed
                     throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
                 }
 
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/", "Source_Bank_Ctry")
-                        .equals(reader.getName())) {
+                if (reader.isStartElement()
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "Source_Bank_Ctry")
+                                .equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Source_Bank_Ctry").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -6614,7 +6707,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
 
                 if (reader.isStartElement()
                         && new javax.xml.namespace.QName("http://tempuri.org/", "Source_Bank_Account_Format")
-                                .equals(reader.getName())) {
+                                .equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Source_Bank_Account_Format").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -6640,7 +6734,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
 
                 if (reader.isStartElement()
                         && new javax.xml.namespace.QName("http://tempuri.org/", "Source_Bank_Account")
-                                .equals(reader.getName())) {
+                                .equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Source_Bank_Account").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -6666,7 +6761,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
 
                 if (reader.isStartElement()
                         && new javax.xml.namespace.QName("http://tempuri.org/", "Dest_Bank_Account_Format")
-                                .equals(reader.getName())) {
+                                .equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Dest_Bank_Account_Format").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -6690,8 +6786,10 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/", "Dest_Bank_Account")
-                        .equals(reader.getName())) {
+                if (reader.isStartElement()
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "Dest_Bank_Account")
+                                .equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Dest_Bank_Account").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -6715,8 +6813,10 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/", "Dest_Bank_Ctry")
-                        .equals(reader.getName())) {
+                if (reader.isStartElement()
+                        && new javax.xml.namespace.QName("http://tempuri.org/", "Dest_Bank_Ctry")
+                                .equals(reader.getName())
+                        || new javax.xml.namespace.QName("", "Dest_Bank_Ctry").equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -6740,7 +6840,8 @@ public class GetTransaction implements org.apache.axis2.databinding.ADBBean {
                     reader.next();
 
                 if (reader.isStartElement())
-                    // A start element we are not expecting indicates a trailing invalid property
+                    // 2 - A start element we are not expecting indicates a trailing invalid property
+
                     throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
 
             } catch (javax.xml.stream.XMLStreamException e) {
