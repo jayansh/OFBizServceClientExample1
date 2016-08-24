@@ -25,17 +25,19 @@
                   )
             {
                 //TODO : fill this with the necessary business logic
-                     /*throw new java.lang.UnsupportedOperationException(
-                     "Please implement " + this.getClass().getName() + "#getTransaction");*/
-             org.tempuri.GetTransactionResponse response = new org.tempuri.GetTransactionResponse();
-             org.tempuri.ResponseMsg message = new org.tempuri.ResponseMsg();
-             message.setAvlBalance(new Double(30));
-             message.setAcknowledgement("Service success");
-             message.setLoadAmount(new Double(21.02));
-             message.setResponsestatus("Done");
-             message.setCurBalance(new Double(30));
-             response.setGetTransactionResult(message);
-             return response;
+        /*
+         * throw new java.lang.UnsupportedOperationException(
+         * "Please implement " + this.getClass().getName() + "#getTransaction");
+         */
+        org.tempuri.GetTransactionResponse response = new org.tempuri.GetTransactionResponse();
+        org.tempuri.ResponseMsg message = new org.tempuri.ResponseMsg();
+        message.setAvlBalance(new Double(30));
+        message.setAcknowledgement("Service success");
+        message.setLoadAmount(new Double(21.02));
+        message.setResponsestatus("Done");
+        message.setCurBalance(new Double(30));
+        response.setGetTransactionResult(message);
+        return response;
         }
      
     }

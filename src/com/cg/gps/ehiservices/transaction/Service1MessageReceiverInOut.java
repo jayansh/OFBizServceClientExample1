@@ -5,172 +5,149 @@
  * This file was auto-generated from WSDL
  * by the Apache Axis2 version: 1.6.3  Built on : Jun 27, 2015 (11:17:49 BST)
  */
-        package com.cg.gps.ehiservices.transaction;
+package com.cg.gps.ehiservices.transaction;
 
-        /**
-        *  Service1MessageReceiverInOut message receiver
-        */
+/**
+ * Service1MessageReceiverInOut message receiver
+ */
 
-        public class Service1MessageReceiverInOut extends org.apache.axis2.receivers.AbstractInOutMessageReceiver{
+public class Service1MessageReceiverInOut extends org.apache.axis2.receivers.AbstractInOutMessageReceiver {
 
-
-        public void invokeBusinessLogic(org.apache.axis2.context.MessageContext msgContext, org.apache.axis2.context.MessageContext newMsgContext)
-        throws org.apache.axis2.AxisFault{
-
-        try {
-
-        // get the implementation class for the Web Service
-        Object obj = getTheImplementationObject(msgContext);
-
-        Service1SkeletonInterface skel = (Service1SkeletonInterface)obj;
-        //Out Envelop
-        org.apache.axiom.soap.SOAPEnvelope envelope = null;
-        //Find the axisOperation that has been set by the Dispatch phase.
-        org.apache.axis2.description.AxisOperation op = msgContext.getOperationContext().getAxisOperation();
-        if (op == null) {
-        throw new org.apache.axis2.AxisFault("Operation is not located, if this is doclit style the SOAP-ACTION should specified via the SOAP Action to use the RawXMLProvider");
-        }
-
-        java.lang.String methodName;
-        if((op.getName() != null) && ((methodName = org.apache.axis2.util.JavaUtils.xmlNameToJavaIdentifier(op.getName().getLocalPart())) != null)){
-
-
-        
-
-            if("getTransaction".equals(methodName)){
-                
-                org.tempuri.GetTransactionResponse getTransactionResponse7 = null;
-	                        org.tempuri.GetTransaction wrappedParam =
-                                                             (org.tempuri.GetTransaction)fromOM(
-                                    msgContext.getEnvelope().getBody().getFirstElement(),
-                                    org.tempuri.GetTransaction.class,
-                                    getEnvelopeNamespaces(msgContext.getEnvelope()));
-                                                
-                                               getTransactionResponse7 =
-                                                   
-                                                   
-                                                         skel.getTransaction(wrappedParam)
-                                                    ;
-                                            
-                                        envelope = toEnvelope(getSOAPFactory(msgContext), getTransactionResponse7, false, new javax.xml.namespace.QName("http://tempuri.org/",
-                                                    "getTransaction"));
-                                    
-            } else {
-              throw new java.lang.RuntimeException("method not found");
-            }
-        
-
-        newMsgContext.setEnvelope(envelope);
-        }
-        }
-        catch (java.lang.Exception e) {
-        throw org.apache.axis2.AxisFault.makeFault(e);
-        }
-        }
-        
-        //
-            private  org.apache.axiom.om.OMElement  toOM(org.tempuri.GetTransaction param, boolean optimizeContent)
-            throws org.apache.axis2.AxisFault {
-
-            
-                        try{
-                             return param.getOMElement(org.tempuri.GetTransaction.MY_QNAME,
-                                          org.apache.axiom.om.OMAbstractFactory.getOMFactory());
-                        } catch(org.apache.axis2.databinding.ADBException e){
-                            throw org.apache.axis2.AxisFault.makeFault(e);
-                        }
-                    
-
-            }
-        
-            private  org.apache.axiom.om.OMElement  toOM(org.tempuri.GetTransactionResponse param, boolean optimizeContent)
-            throws org.apache.axis2.AxisFault {
-
-            
-                        try{
-                             return param.getOMElement(org.tempuri.GetTransactionResponse.MY_QNAME,
-                                          org.apache.axiom.om.OMAbstractFactory.getOMFactory());
-                        } catch(org.apache.axis2.databinding.ADBException e){
-                            throw org.apache.axis2.AxisFault.makeFault(e);
-                        }
-                    
-
-            }
-        
-                    private  org.apache.axiom.soap.SOAPEnvelope toEnvelope(org.apache.axiom.soap.SOAPFactory factory, org.tempuri.GetTransactionResponse param, boolean optimizeContent, javax.xml.namespace.QName methodQName)
-                        throws org.apache.axis2.AxisFault{
-                      try{
-                          org.apache.axiom.soap.SOAPEnvelope emptyEnvelope = factory.getDefaultEnvelope();
-                           
-                                    emptyEnvelope.getBody().addChild(param.getOMElement(org.tempuri.GetTransactionResponse.MY_QNAME,factory));
-                                
-
-                         return emptyEnvelope;
-                    } catch(org.apache.axis2.databinding.ADBException e){
-                        throw org.apache.axis2.AxisFault.makeFault(e);
-                    }
-                    }
-                    
-                         private org.tempuri.GetTransactionResponse wrapGetTransaction(){
-                                org.tempuri.GetTransactionResponse wrappedElement = new org.tempuri.GetTransactionResponse();
-                                return wrappedElement;
-                         }
-                    
-
-
-        /**
-        *  get the default envelope
-        */
-        private org.apache.axiom.soap.SOAPEnvelope toEnvelope(org.apache.axiom.soap.SOAPFactory factory){
-        return factory.getDefaultEnvelope();
-        }
-
-
-        private  java.lang.Object fromOM(
-        org.apache.axiom.om.OMElement param,
-        java.lang.Class type,
-        java.util.Map extraNamespaces) throws org.apache.axis2.AxisFault{
+    public void invokeBusinessLogic(org.apache.axis2.context.MessageContext msgContext,
+            org.apache.axis2.context.MessageContext newMsgContext) throws org.apache.axis2.AxisFault {
 
         try {
-        
-                if (org.tempuri.GetTransaction.class.equals(type)){
-                
-                        return org.tempuri.GetTransaction.Factory.parse(param.getXMLStreamReaderWithoutCaching());
-                    
 
-                }
-            
-                if (org.tempuri.GetTransactionResponse.class.equals(type)){
-                
-                        return org.tempuri.GetTransactionResponse.Factory.parse(param.getXMLStreamReaderWithoutCaching());
-                    
+            // get the implementation class for the Web Service
+            Object obj = getTheImplementationObject(msgContext);
 
+            Service1SkeletonInterface skel = (Service1SkeletonInterface) obj;
+            //Out Envelop
+            org.apache.axiom.soap.SOAPEnvelope envelope = null;
+            //Find the axisOperation that has been set by the Dispatch phase.
+            org.apache.axis2.description.AxisOperation op = msgContext.getOperationContext().getAxisOperation();
+            if (op == null) {
+                throw new org.apache.axis2.AxisFault(
+                        "Operation is not located, if this is doclit style the SOAP-ACTION should specified via the SOAP Action to use the RawXMLProvider");
+            }
+
+            java.lang.String methodName;
+            if ((op.getName() != null) && ((methodName = org.apache.axis2.util.JavaUtils
+                    .xmlNameToJavaIdentifier(op.getName().getLocalPart())) != null)) {
+
+                if ("getTransaction".equals(methodName)) {
+
+                    org.tempuri.GetTransactionResponse getTransactionResponse7 = null;
+                    org.tempuri.GetTransaction wrappedParam = (org.tempuri.GetTransaction) fromOM(
+                            msgContext.getEnvelope().getBody().getFirstElement(), org.tempuri.GetTransaction.class,
+                            getEnvelopeNamespaces(msgContext.getEnvelope()));
+
+                    getTransactionResponse7 =
+
+                            skel.getTransaction(wrappedParam);
+
+                    envelope = toEnvelope(getSOAPFactory(msgContext), getTransactionResponse7, false,
+                            new javax.xml.namespace.QName("http://tempuri.org/", "getTransaction"));
+
+                } else {
+                    throw new java.lang.RuntimeException("method not found");
                 }
-            
+
+                newMsgContext.setEnvelope(envelope);
+            }
         } catch (java.lang.Exception e) {
-        throw org.apache.axis2.AxisFault.makeFault(e);
+            throw org.apache.axis2.AxisFault.makeFault(e);
         }
-           return null;
+    }
+
+    //
+    private org.apache.axiom.om.OMElement toOM(org.tempuri.GetTransaction param, boolean optimizeContent)
+            throws org.apache.axis2.AxisFault {
+
+        try {
+            return param.getOMElement(org.tempuri.GetTransaction.MY_QNAME,
+                    org.apache.axiom.om.OMAbstractFactory.getOMFactory());
+        } catch (org.apache.axis2.databinding.ADBException e) {
+            throw org.apache.axis2.AxisFault.makeFault(e);
         }
 
+    }
 
+    private org.apache.axiom.om.OMElement toOM(org.tempuri.GetTransactionResponse param, boolean optimizeContent)
+            throws org.apache.axis2.AxisFault {
 
-    
+        try {
+            return param.getOMElement(org.tempuri.GetTransactionResponse.MY_QNAME,
+                    org.apache.axiom.om.OMAbstractFactory.getOMFactory());
+        } catch (org.apache.axis2.databinding.ADBException e) {
+            throw org.apache.axis2.AxisFault.makeFault(e);
+        }
 
-        /**
-        *  A utility method that copies the namepaces from the SOAPEnvelope
-        */
-        private java.util.Map getEnvelopeNamespaces(org.apache.axiom.soap.SOAPEnvelope env){
+    }
+
+    private org.apache.axiom.soap.SOAPEnvelope toEnvelope(org.apache.axiom.soap.SOAPFactory factory,
+            org.tempuri.GetTransactionResponse param, boolean optimizeContent, javax.xml.namespace.QName methodQName)
+            throws org.apache.axis2.AxisFault {
+        try {
+            org.apache.axiom.soap.SOAPEnvelope emptyEnvelope = factory.getDefaultEnvelope();
+
+            emptyEnvelope.getBody().addChild(param.getOMElement(org.tempuri.GetTransactionResponse.MY_QNAME, factory));
+
+            return emptyEnvelope;
+        } catch (org.apache.axis2.databinding.ADBException e) {
+            throw org.apache.axis2.AxisFault.makeFault(e);
+        }
+    }
+
+    private org.tempuri.GetTransactionResponse wrapGetTransaction() {
+        org.tempuri.GetTransactionResponse wrappedElement = new org.tempuri.GetTransactionResponse();
+        return wrappedElement;
+    }
+
+    /**
+     * get the default envelope
+     */
+    private org.apache.axiom.soap.SOAPEnvelope toEnvelope(org.apache.axiom.soap.SOAPFactory factory) {
+        return factory.getDefaultEnvelope();
+    }
+
+    private java.lang.Object fromOM(org.apache.axiom.om.OMElement param, java.lang.Class type,
+            java.util.Map extraNamespaces) throws org.apache.axis2.AxisFault {
+
+        try {
+
+            if (org.tempuri.GetTransaction.class.equals(type)) {
+
+                return org.tempuri.GetTransaction.Factory.parse(param.getXMLStreamReaderWithoutCaching());
+
+            }
+
+            if (org.tempuri.GetTransactionResponse.class.equals(type)) {
+
+                return org.tempuri.GetTransactionResponse.Factory.parse(param.getXMLStreamReaderWithoutCaching());
+
+            }
+
+        } catch (java.lang.Exception e) {
+            throw org.apache.axis2.AxisFault.makeFault(e);
+        }
+        return null;
+    }
+
+    /**
+     * A utility method that copies the namepaces from the SOAPEnvelope
+     */
+    private java.util.Map getEnvelopeNamespaces(org.apache.axiom.soap.SOAPEnvelope env) {
         java.util.Map returnMap = new java.util.HashMap();
         java.util.Iterator namespaceIterator = env.getAllDeclaredNamespaces();
         while (namespaceIterator.hasNext()) {
-        org.apache.axiom.om.OMNamespace ns = (org.apache.axiom.om.OMNamespace) namespaceIterator.next();
-        returnMap.put(ns.getPrefix(),ns.getNamespaceURI());
+            org.apache.axiom.om.OMNamespace ns = (org.apache.axiom.om.OMNamespace) namespaceIterator.next();
+            returnMap.put(ns.getPrefix(), ns.getNamespaceURI());
         }
         return returnMap;
-        }
+    }
 
-        private org.apache.axis2.AxisFault createAxisFault(java.lang.Exception e) {
+    private org.apache.axis2.AxisFault createAxisFault(java.lang.Exception e) {
         org.apache.axis2.AxisFault f;
         Throwable cause = e.getCause();
         if (cause != null) {
@@ -182,5 +159,4 @@
         return f;
     }
 
-        }//end of class
-    
+}//end of class
