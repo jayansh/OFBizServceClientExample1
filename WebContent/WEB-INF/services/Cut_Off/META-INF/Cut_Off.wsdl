@@ -1,220 +1,82 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions targetNamespace="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
-  <wsdl:types>
-    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
-            <s:element name="GetTransaction">
-                <s:complexType>
-                    <s:sequence>
-                        <s:element maxOccurs="1" minOccurs="0" name="Acquirer_id_DE32" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="1" name="ActBal" type="s:double"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="Additional_Amt_DE54" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="Amt_Tran_Fee_DE28" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="Auth_Code_DE38" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="1" name="Avl_Bal" type="s:double"/>
-                        <s:element maxOccurs="1" minOccurs="1" name="Bill_Amt" type="s:double"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="Bill_Ccy" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="1" name="BlkAmt" type="s:double"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="Cust_Ref" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="CVV2" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="Expiry_Date" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="1" name="FX_Pad" type="s:double"/>
-                        <s:element maxOccurs="1" minOccurs="1" name="Fee_Fixed" type="s:double"/>
-                        <s:element maxOccurs="1" minOccurs="1" name="Fee_Rate" type="s:double"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="LoadSRC" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="LoadType" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="MCC_Code" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="MCC_Desc" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="1" name="MCC_Pad" type="s:double"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="Merch_ID_DE42" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="Merch_Name_DE43" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="Note" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="PAN_Sequence_Number" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="PIN" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="PIN_Enc_Algorithm" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="PIN_Format" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="PIN_Key_Index" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="POS_Data_DE22" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="POS_Data_DE61" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="POS_Termnl_DE41" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="POS_Time_DE12" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="Proc_Code" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="Resp_Code_DE39" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="Ret_Ref_No_DE37" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="1" name="Settle_Amt" type="s:double"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="Settle_Ccy" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="Status_Code" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="Token" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="Trans_link" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="1" name="Txn_Amt" type="s:double"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="Txn_CCy" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="Txn_Ctry" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="Txn_Desc" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="Txn_GPS_Date" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="1" name="TXn_ID" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="Txn_Stat_Code" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="TXN_Time_DE07" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="Txn_Type" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="Additional_Data_DE48" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="Authorised_by_GPS" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="AVS_Result" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="CU_Group" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="InstCode" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="MTID" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="1" name="ProductID" type="s:int"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="Record_Data_DE120" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="1" name="SubBIN" type="s:int"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="TLogIDOrg" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="VL_Group" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="Dom_Fee_Fixed" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="Non_Dom_Fee_Fixed" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="Fx_Fee_Fixed" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="Other_Fee_Amt" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="Fx_Fee_Rate" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="Dom_Fee_Rate" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="Non_Dom_Fee_Rate" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="Additional_Data_DE124" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="1" name="SendingAttemptCount" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="Source_Bank_Ctry" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="Source_Bank_Account_Format" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="Source_Bank_Account" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="Dest_Bank_Account_Format" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="Dest_Bank_Account" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="Dest_Bank_Ctry" type="s:string"/>
-                    </s:sequence>
-                </s:complexType>
-            </s:element>
-            <s:element name="GetTransactionResponse">
-                <s:complexType>
-                    <s:sequence>
-                        <s:element maxOccurs="1" minOccurs="1" name="GetTransactionResult" type="tns:ResponseMsg"/>
-                    </s:sequence>
-                </s:complexType>
-            </s:element>
-            <s:complexType name="ResponseMsg">
-                <s:sequence>
-                    <s:element maxOccurs="1" minOccurs="0" name="Responsestatus" type="s:string"/>
-                    <s:element maxOccurs="1" minOccurs="1" name="CurBalance" type="s:double"/>
-                    <s:element maxOccurs="1" minOccurs="1" name="AvlBalance" type="s:double"/>
-                    <s:element maxOccurs="1" minOccurs="0" name="Acknowledgement" type="s:string"/>
-                    <s:element maxOccurs="1" minOccurs="1" name="LoadAmount" type="s:double"/>
-                </s:sequence>
-            </s:complexType>
-        </s:schema>
-    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+<?xml version="1.0" encoding="utf-8" ?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+    xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/"
+    xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+    xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:types>
+        <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
             <s:element name="Cut_Off">
                 <s:complexType>
                     <s:sequence>
-                        <s:element maxOccurs="1" minOccurs="1" name="CutoffID" type="s:int"/>
-                        <s:element maxOccurs="1" minOccurs="1" name="ProductID" type="s:int"/>
-                        <s:element maxOccurs="1" minOccurs="0" name="CutoffDate" type="s:string"/>
-                        <s:element maxOccurs="1" minOccurs="1" name="FirstTxn_ID" type="s:int"/>
-                        <s:element maxOccurs="1" minOccurs="1" name="LastTxn_ID" type="s:int"/>
-                        <s:element maxOccurs="1" minOccurs="1" name="Auths_Acknowledged" type="s:int"/>
-                        <s:element maxOccurs="1" minOccurs="1" name="Auths_NotAcknowledged" type="s:int"/>
-                        <s:element maxOccurs="1" minOccurs="1" name="Financials_Acknowledged" type="s:int"/>
-                        <s:element maxOccurs="1" minOccurs="1" name="Financials_NotAcknowledged" type="s:int"/>
-                        <s:element maxOccurs="1" minOccurs="1" name="LoadsUnloads_Acknowledged" type="s:int"/>
-                        <s:element maxOccurs="1" minOccurs="1" name="LoadsUnloads_NotAcknowledged" type="s:int"/>
-                        <s:element maxOccurs="1" minOccurs="1" name="BalanceAdjustExpiry_Acknowledged" type="s:int"/>
-                        <s:element maxOccurs="1" minOccurs="1" name="BalanceAdjustExpiry_NotAcknowledged" type="s:int"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="CutoffID" type="s:int" />
+                        <s:element minOccurs="1" maxOccurs="1" name="ProductID" type="s:int" />
+                        <s:element minOccurs="0" maxOccurs="1" name="CutoffDate" type="s:string" />
+                        <s:element minOccurs="1" maxOccurs="1" name="FirstTxn_ID" type="s:int" />
+                        <s:element minOccurs="1" maxOccurs="1" name="LastTxn_ID" type="s:int" />
+                        <s:element minOccurs="1" maxOccurs="1" name="Auths_Acknowledged" type="s:int" />
+                        <s:element minOccurs="1" maxOccurs="1" name="Auths_NotAcknowledged" type="s:int" />
+                        <s:element minOccurs="1" maxOccurs="1" name="Financials_Acknowledged" type="s:int" />
+                        <s:element minOccurs="1" maxOccurs="1" name="Financials_NotAcknowledged" type="s:int" />
+                        <s:element minOccurs="1" maxOccurs="1" name="LoadsUnloads_Acknowledged" type="s:int" />
+                        <s:element minOccurs="1" maxOccurs="1" name="LoadsUnloads_NotAcknowledged" type="s:int" />
+                        <s:element minOccurs="1" maxOccurs="1" name="BalanceAdjustExpiry_Acknowledged" type="s:int" />
+                        <s:element minOccurs="1" maxOccurs="1" name="BalanceAdjustExpiry_NotAcknowledged" type="s:int" />
                     </s:sequence>
                 </s:complexType>
             </s:element>
             <s:element name="Cut_OffResponse">
                 <s:complexType>
                     <s:sequence>
-                        <s:element maxOccurs="1" minOccurs="0" name="th" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="th" type="s:string" />
                     </s:sequence>
                 </s:complexType>
             </s:element>
         </s:schema>
-  </wsdl:types>
-  <wsdl:message name="GetTransactionSoapIn">
-    <wsdl:part name="parameters" element="tns:GetTransaction">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="GetTransactionSoapOut">
-    <wsdl:part name="parameters" element="tns:GetTransactionResponse">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="Cut_OffSoapOut">
-    <wsdl:part name="parameters" element="tns:Cut_OffResponse">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="Cut_OffSoapIn">
-    <wsdl:part name="parameters" element="tns:Cut_Off">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:portType name="Cut_OffSoap">
-    <wsdl:operation name="Cut_Off">
-      <wsdl:input message="tns:Cut_OffSoapIn">
-    </wsdl:input>
-      <wsdl:output message="tns:Cut_OffSoapOut">
-    </wsdl:output>
-    </wsdl:operation>
-  </wsdl:portType>
-  <wsdl:portType name="GetTransactionSoap">
-    <wsdl:operation name="GetTransaction">
-      <wsdl:input message="tns:GetTransactionSoapIn">
-    </wsdl:input>
-      <wsdl:output message="tns:GetTransactionSoapOut">
-    </wsdl:output>
-    </wsdl:operation>
-  </wsdl:portType>
-  <wsdl:binding name="Cut_OffSoap" type="tns:Cut_OffSoap">
-    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
-    <wsdl:operation name="Cut_Off">
-      <soap:operation soapAction="http://tempuri.org/Cut_Off" style="document"/>
-      <wsdl:input>
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
-  </wsdl:binding>
-  <wsdl:binding name="Cut_OffSoap12" type="tns:Cut_OffSoap">
-    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
-    <wsdl:operation name="Cut_Off">
-      <soap12:operation soapAction="http://tempuri.org/Cut_Off" style="document"/>
-      <wsdl:input>
-        <soap12:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
-  </wsdl:binding>
-  <wsdl:binding name="GetTransactionSoap" type="tns:GetTransactionSoap">
-    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
-    <wsdl:operation name="GetTransaction">
-      <soap:operation soapAction="http://tempuri.org/GetTransaction" style="document"/>
-      <wsdl:input>
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
-  </wsdl:binding>
-  <wsdl:binding name="GetTransactionSoap12" type="tns:GetTransactionSoap">
-    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
-    <wsdl:operation name="GetTransaction">
-      <soap12:operation soapAction="http://tempuri.org/GetTransaction" style="document"/>
-      <wsdl:input>
-        <soap12:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
-  </wsdl:binding>
-  <wsdl:service name="Cut_Off">
-    <wsdl:port name="Cut_OffSoap" binding="tns:Cut_OffSoap">
-      <soap:address location="http://localhost:22355/Cut_Off.asmx"/>
-    </wsdl:port>
-    <wsdl:port name="Cut_OffSoap12" binding="tns:Cut_OffSoap12">
-      <soap12:address location="http://localhost:22355/Cut_Off.asmx"/>
-    </wsdl:port>
-  </wsdl:service>
+    </wsdl:types>
+    <wsdl:message name="Cut_OffSoapIn">
+        <wsdl:part name="parameters" element="tns:Cut_Off" />
+    </wsdl:message>
+    <wsdl:message name="Cut_OffSoapOut">
+        <wsdl:part name="parameters" element="tns:Cut_OffResponse" />
+    </wsdl:message>
+    <wsdl:portType name="Cut_OffSoap">
+        <wsdl:operation name="Cut_Off">
+            <wsdl:input message="tns:Cut_OffSoapIn" />
+            <wsdl:output message="tns:Cut_OffSoapOut" />
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="Cut_OffSoap" type="tns:Cut_OffSoap">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="Cut_Off">
+            <soap:operation soapAction="http://tempuri.org/Cut_Off" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="Cut_OffSoap12" type="tns:Cut_OffSoap">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="Cut_Off">
+            <soap12:operation soapAction="http://tempuri.org/Cut_Off" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="Cut_Off">
+        <wsdl:port name="Cut_OffSoap" binding="tns:Cut_OffSoap">
+            <soap:address location="http://localhost:22355/Cut_Off.asmx" />
+        </wsdl:port>
+        <wsdl:port name="Cut_OffSoap12" binding="tns:Cut_OffSoap12">
+            <soap12:address location="http://localhost:22355/Cut_Off.asmx" />
+        </wsdl:port>
+    </wsdl:service>
 </wsdl:definitions>
