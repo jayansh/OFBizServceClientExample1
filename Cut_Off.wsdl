@@ -41,13 +41,13 @@
     <wsdl:message name="Cut_OffSoapOut">
         <wsdl:part name="parameters" element="tns:Cut_OffResponse" />
     </wsdl:message>
-    <wsdl:portType name="Service1Soap">
+    <wsdl:portType name="Cut_OffSoap">
         <wsdl:operation name="Cut_Off">
             <wsdl:input message="tns:Cut_OffSoapIn" />
             <wsdl:output message="tns:Cut_OffSoapOut" />
         </wsdl:operation>
     </wsdl:portType>
-    <wsdl:binding name="Service1Soap" type="tns:Service1Soap">
+    <wsdl:binding name="Cut_OffSoap" type="tns:Cut_OffSoap">
         <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
         <wsdl:operation name="Cut_Off">
             <soap:operation soapAction="http://tempuri.org/Cut_Off" style="document" />
@@ -59,7 +59,7 @@
             </wsdl:output>
         </wsdl:operation>
     </wsdl:binding>
-    <wsdl:binding name="Service1Soap12" type="tns:Service1Soap">
+    <wsdl:binding name="Cut_OffSoap12" type="tns:Cut_OffSoap">
         <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
         <wsdl:operation name="Cut_Off">
             <soap12:operation soapAction="http://tempuri.org/Cut_Off" style="document" />
@@ -71,12 +71,12 @@
             </wsdl:output>
         </wsdl:operation>
     </wsdl:binding>
-    <wsdl:service name="Service1">
-        <wsdl:port name="Service1Soap" binding="tns:Service1Soap">
-            <soap:address location="http://localhost:22355/Service1.asmx" />
+    <wsdl:service name="Cut_Off">
+        <wsdl:port name="Cut_OffSoap" binding="tns:Cut_OffSoap">
+            <soap:address location="http://localhost:22355/Cut_Off.asmx" />
         </wsdl:port>
-        <wsdl:port name="Service1Soap12" binding="tns:Service1Soap12">
-            <soap12:address location="http://localhost:22355/Service1.asmx" />
+        <wsdl:port name="Cut_OffSoap12" binding="tns:Cut_OffSoap12">
+            <soap12:address location="http://localhost:22355/Cut_Off.asmx" />
         </wsdl:port>
     </wsdl:service>
 </wsdl:definitions>
