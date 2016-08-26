@@ -1,6 +1,6 @@
 
 /**
- * Service1MessageReceiverInOut.java
+ * GetTransactionMessageReceiverInOut.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis2 version: 1.7.3  Built on : May 30, 2016 (04:08:57 BST)
@@ -8,10 +8,10 @@
 package com.cg.gps.ehiservices.transaction;
 
 /**
- * Service1MessageReceiverInOut message receiver
+ * GetTransactionMessageReceiverInOut message receiver
  */
 
-public class Service1MessageReceiverInOut extends org.apache.axis2.receivers.AbstractInOutMessageReceiver {
+public class GetTransactionMessageReceiverInOut extends org.apache.axis2.receivers.AbstractInOutMessageReceiver {
 
     public void invokeBusinessLogic(org.apache.axis2.context.MessageContext msgContext,
             org.apache.axis2.context.MessageContext newMsgContext) throws org.apache.axis2.AxisFault {
@@ -21,7 +21,7 @@ public class Service1MessageReceiverInOut extends org.apache.axis2.receivers.Abs
             // get the implementation class for the Web Service
             Object obj = getTheImplementationObject(msgContext);
 
-            Service1SkeletonInterface skel = (Service1SkeletonInterface) obj;
+            GetTransactionSkeletonInterface skel = (GetTransactionSkeletonInterface) obj;
             //Out Envelop
             org.apache.axiom.soap.SOAPEnvelope envelope = null;
             //Find the axisOperation that has been set by the Dispatch phase.

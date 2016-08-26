@@ -3,7 +3,7 @@
  * GetTransactionResponse.java
  *
  * This file was auto-generated from WSDL
- * by the Apache Axis2 version: 1.7.3  Built on : May 30, 2016 (04:09:26 BST)
+ * by the Apache Axis2 version: 1.6.3  Built on : Jun 27, 2015 (11:18:31 BST)
  */
 
 package org.tempuri;
@@ -54,7 +54,8 @@ public class GetTransactionResponse implements org.apache.axis2.databinding.ADBB
     public org.apache.axiom.om.OMElement getOMElement(final javax.xml.namespace.QName parentQName,
             final org.apache.axiom.om.OMFactory factory) throws org.apache.axis2.databinding.ADBException {
 
-        return factory.createOMElement(new org.apache.axis2.databinding.ADBDataSource(this, MY_QNAME));
+        org.apache.axiom.om.OMDataSource dataSource = new org.apache.axis2.databinding.ADBDataSource(this, MY_QNAME);
+        return factory.createOMElement(dataSource, MY_QNAME);
 
     }
 
@@ -111,7 +112,7 @@ public class GetTransactionResponse implements org.apache.axis2.databinding.ADBB
             javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
         java.lang.String writerPrefix = xmlWriter.getPrefix(namespace);
         if (writerPrefix != null) {
-            xmlWriter.writeStartElement(writerPrefix, localPart, namespace);
+            xmlWriter.writeStartElement(namespace, localPart);
         } else {
             if (namespace.length() == 0) {
                 prefix = "";
@@ -131,14 +132,11 @@ public class GetTransactionResponse implements org.apache.axis2.databinding.ADBB
     private void writeAttribute(java.lang.String prefix, java.lang.String namespace, java.lang.String attName,
             java.lang.String attValue, javax.xml.stream.XMLStreamWriter xmlWriter)
             throws javax.xml.stream.XMLStreamException {
-        java.lang.String writerPrefix = xmlWriter.getPrefix(namespace);
-        if (writerPrefix != null) {
-            xmlWriter.writeAttribute(writerPrefix, namespace, attName, attValue);
-        } else {
+        if (xmlWriter.getPrefix(namespace) == null) {
             xmlWriter.writeNamespace(prefix, namespace);
             xmlWriter.setPrefix(prefix, namespace);
-            xmlWriter.writeAttribute(prefix, namespace, attName, attValue);
         }
+        xmlWriter.writeAttribute(namespace, attName, attValue);
     }
 
     /**
@@ -149,7 +147,8 @@ public class GetTransactionResponse implements org.apache.axis2.databinding.ADBB
         if (namespace.equals("")) {
             xmlWriter.writeAttribute(attName, attValue);
         } else {
-            xmlWriter.writeAttribute(registerPrefix(xmlWriter, namespace), namespace, attName, attValue);
+            registerPrefix(xmlWriter, namespace);
+            xmlWriter.writeAttribute(namespace, attName, attValue);
         }
     }
 
@@ -176,7 +175,7 @@ public class GetTransactionResponse implements org.apache.axis2.databinding.ADBB
             xmlWriter.writeAttribute(attName, attributeValue);
         } else {
             registerPrefix(xmlWriter, namespace);
-            xmlWriter.writeAttribute(attributePrefix, namespace, attName, attributeValue);
+            xmlWriter.writeAttribute(namespace, attName, attributeValue);
         }
     }
 
@@ -275,6 +274,7 @@ public class GetTransactionResponse implements org.apache.axis2.databinding.ADBB
      */
     public javax.xml.stream.XMLStreamReader getPullParser(javax.xml.namespace.QName qName)
             throws org.apache.axis2.databinding.ADBException {
+
         java.util.ArrayList elementList = new java.util.ArrayList();
         java.util.ArrayList attribList = new java.util.ArrayList();
 
@@ -287,13 +287,13 @@ public class GetTransactionResponse implements org.apache.axis2.databinding.ADBB
 
         return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(qName, elementList.toArray(),
                 attribList.toArray());
+
     }
 
     /**
      * Factory class that keeps the parse method
      */
     public static class Factory {
-        private static org.apache.commons.logging.Log log = org.apache.commons.logging.LogFactory.getLog(Factory.class);
 
         /**
          * static method to create the object Precondition: If this object is an
@@ -309,7 +309,6 @@ public class GetTransactionResponse implements org.apache.axis2.databinding.ADBB
             GetTransactionResponse object = new GetTransactionResponse();
 
             int event;
-            javax.xml.namespace.QName currentQName = null;
             java.lang.String nillableValue = null;
             java.lang.String prefix = "";
             java.lang.String namespaceuri = "";
@@ -317,8 +316,6 @@ public class GetTransactionResponse implements org.apache.axis2.databinding.ADBB
 
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
-
-                currentQName = reader.getName();
 
                 if (reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "type") != null) {
                     java.lang.String fullTypeName = reader
@@ -354,8 +351,7 @@ public class GetTransactionResponse implements org.apache.axis2.databinding.ADBB
 
                 if (reader.isStartElement()
                         && new javax.xml.namespace.QName("http://tempuri.org/", "GetTransactionResult")
-                                .equals(reader.getName())
-                        || new javax.xml.namespace.QName("", "GetTransactionResult").equals(reader.getName())) {
+                                .equals(reader.getName())) {
 
                     object.setGetTransactionResult(org.tempuri.ResponseMsg.Factory.parse(reader));
 
@@ -364,7 +360,7 @@ public class GetTransactionResponse implements org.apache.axis2.databinding.ADBB
                 } // End of if for expected property start element
 
                 else {
-                    // 1 - A start element we are not expecting indicates an invalid parameter was passed
+                    // A start element we are not expecting indicates an invalid parameter was passed
                     throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
                 }
 
@@ -372,8 +368,7 @@ public class GetTransactionResponse implements org.apache.axis2.databinding.ADBB
                     reader.next();
 
                 if (reader.isStartElement())
-                    // 2 - A start element we are not expecting indicates a trailing invalid property
-
+                    // A start element we are not expecting indicates a trailing invalid property
                     throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
 
             } catch (javax.xml.stream.XMLStreamException e) {

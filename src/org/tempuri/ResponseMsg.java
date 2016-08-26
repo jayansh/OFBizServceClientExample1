@@ -3,7 +3,7 @@
  * ResponseMsg.java
  *
  * This file was auto-generated from WSDL
- * by the Apache Axis2 version: 1.7.3  Built on : May 30, 2016 (04:09:26 BST)
+ * by the Apache Axis2 version: 1.6.3  Built on : Jun 27, 2015 (11:18:31 BST)
  */
 
 package org.tempuri;
@@ -187,7 +187,8 @@ public class ResponseMsg implements org.apache.axis2.databinding.ADBBean {
     public org.apache.axiom.om.OMElement getOMElement(final javax.xml.namespace.QName parentQName,
             final org.apache.axiom.om.OMFactory factory) throws org.apache.axis2.databinding.ADBException {
 
-        return factory.createOMElement(new org.apache.axis2.databinding.ADBDataSource(this, parentQName));
+        org.apache.axiom.om.OMDataSource dataSource = new org.apache.axis2.databinding.ADBDataSource(this, parentQName);
+        return factory.createOMElement(dataSource, parentQName);
 
     }
 
@@ -311,7 +312,7 @@ public class ResponseMsg implements org.apache.axis2.databinding.ADBBean {
             javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
         java.lang.String writerPrefix = xmlWriter.getPrefix(namespace);
         if (writerPrefix != null) {
-            xmlWriter.writeStartElement(writerPrefix, localPart, namespace);
+            xmlWriter.writeStartElement(namespace, localPart);
         } else {
             if (namespace.length() == 0) {
                 prefix = "";
@@ -331,14 +332,11 @@ public class ResponseMsg implements org.apache.axis2.databinding.ADBBean {
     private void writeAttribute(java.lang.String prefix, java.lang.String namespace, java.lang.String attName,
             java.lang.String attValue, javax.xml.stream.XMLStreamWriter xmlWriter)
             throws javax.xml.stream.XMLStreamException {
-        java.lang.String writerPrefix = xmlWriter.getPrefix(namespace);
-        if (writerPrefix != null) {
-            xmlWriter.writeAttribute(writerPrefix, namespace, attName, attValue);
-        } else {
+        if (xmlWriter.getPrefix(namespace) == null) {
             xmlWriter.writeNamespace(prefix, namespace);
             xmlWriter.setPrefix(prefix, namespace);
-            xmlWriter.writeAttribute(prefix, namespace, attName, attValue);
         }
+        xmlWriter.writeAttribute(namespace, attName, attValue);
     }
 
     /**
@@ -349,7 +347,8 @@ public class ResponseMsg implements org.apache.axis2.databinding.ADBBean {
         if (namespace.equals("")) {
             xmlWriter.writeAttribute(attName, attValue);
         } else {
-            xmlWriter.writeAttribute(registerPrefix(xmlWriter, namespace), namespace, attName, attValue);
+            registerPrefix(xmlWriter, namespace);
+            xmlWriter.writeAttribute(namespace, attName, attValue);
         }
     }
 
@@ -376,7 +375,7 @@ public class ResponseMsg implements org.apache.axis2.databinding.ADBBean {
             xmlWriter.writeAttribute(attName, attributeValue);
         } else {
             registerPrefix(xmlWriter, namespace);
-            xmlWriter.writeAttribute(attributePrefix, namespace, attName, attributeValue);
+            xmlWriter.writeAttribute(namespace, attName, attributeValue);
         }
     }
 
@@ -517,7 +516,6 @@ public class ResponseMsg implements org.apache.axis2.databinding.ADBBean {
      * Factory class that keeps the parse method
      */
     public static class Factory {
-        private static org.apache.commons.logging.Log log = org.apache.commons.logging.LogFactory.getLog(Factory.class);
 
         /**
          * static method to create the object Precondition: If this object is an
@@ -533,7 +531,6 @@ public class ResponseMsg implements org.apache.axis2.databinding.ADBBean {
             ResponseMsg object = new ResponseMsg();
 
             int event;
-            javax.xml.namespace.QName currentQName = null;
             java.lang.String nillableValue = null;
             java.lang.String prefix = "";
             java.lang.String namespaceuri = "";
@@ -541,8 +538,6 @@ public class ResponseMsg implements org.apache.axis2.databinding.ADBBean {
 
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
-
-                currentQName = reader.getName();
 
                 if (reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "type") != null) {
                     java.lang.String fullTypeName = reader
@@ -575,10 +570,8 @@ public class ResponseMsg implements org.apache.axis2.databinding.ADBBean {
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                if (reader.isStartElement()
-                        && new javax.xml.namespace.QName("http://tempuri.org/", "Responsestatus")
-                                .equals(reader.getName())
-                        || new javax.xml.namespace.QName("", "Responsestatus").equals(reader.getName())) {
+                if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/", "Responsestatus")
+                        .equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -601,9 +594,8 @@ public class ResponseMsg implements org.apache.axis2.databinding.ADBBean {
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                if (reader.isStartElement()
-                        && new javax.xml.namespace.QName("http://tempuri.org/", "CurBalance").equals(reader.getName())
-                        || new javax.xml.namespace.QName("", "CurBalance").equals(reader.getName())) {
+                if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/", "CurBalance")
+                        .equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -620,16 +612,15 @@ public class ResponseMsg implements org.apache.axis2.databinding.ADBBean {
                 } // End of if for expected property start element
 
                 else {
-                    // 1 - A start element we are not expecting indicates an invalid parameter was passed
+                    // A start element we are not expecting indicates an invalid parameter was passed
                     throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
                 }
 
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                if (reader.isStartElement()
-                        && new javax.xml.namespace.QName("http://tempuri.org/", "AvlBalance").equals(reader.getName())
-                        || new javax.xml.namespace.QName("", "AvlBalance").equals(reader.getName())) {
+                if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/", "AvlBalance")
+                        .equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -646,17 +637,15 @@ public class ResponseMsg implements org.apache.axis2.databinding.ADBBean {
                 } // End of if for expected property start element
 
                 else {
-                    // 1 - A start element we are not expecting indicates an invalid parameter was passed
+                    // A start element we are not expecting indicates an invalid parameter was passed
                     throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
                 }
 
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                if (reader.isStartElement()
-                        && new javax.xml.namespace.QName("http://tempuri.org/", "Acknowledgement")
-                                .equals(reader.getName())
-                        || new javax.xml.namespace.QName("", "Acknowledgement").equals(reader.getName())) {
+                if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/", "Acknowledgement")
+                        .equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -680,9 +669,8 @@ public class ResponseMsg implements org.apache.axis2.databinding.ADBBean {
                 while (!reader.isStartElement() && !reader.isEndElement())
                     reader.next();
 
-                if (reader.isStartElement()
-                        && new javax.xml.namespace.QName("http://tempuri.org/", "LoadAmount").equals(reader.getName())
-                        || new javax.xml.namespace.QName("", "LoadAmount").equals(reader.getName())) {
+                if (reader.isStartElement() && new javax.xml.namespace.QName("http://tempuri.org/", "LoadAmount")
+                        .equals(reader.getName())) {
 
                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
@@ -699,7 +687,7 @@ public class ResponseMsg implements org.apache.axis2.databinding.ADBBean {
                 } // End of if for expected property start element
 
                 else {
-                    // 1 - A start element we are not expecting indicates an invalid parameter was passed
+                    // A start element we are not expecting indicates an invalid parameter was passed
                     throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
                 }
 
@@ -707,8 +695,7 @@ public class ResponseMsg implements org.apache.axis2.databinding.ADBBean {
                     reader.next();
 
                 if (reader.isStartElement())
-                    // 2 - A start element we are not expecting indicates a trailing invalid property
-
+                    // A start element we are not expecting indicates a trailing invalid property
                     throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
 
             } catch (javax.xml.stream.XMLStreamException e) {

@@ -112,13 +112,13 @@
     <wsdl:message name="GetTransactionSoapOut">
         <wsdl:part name="parameters" element="tns:GetTransactionResponse" />
     </wsdl:message>
-    <wsdl:portType name="Service1Soap">
+    <wsdl:portType name="GetTransactionSoap">
         <wsdl:operation name="GetTransaction">
             <wsdl:input message="tns:GetTransactionSoapIn" />
             <wsdl:output message="tns:GetTransactionSoapOut" />
         </wsdl:operation>
     </wsdl:portType>
-    <wsdl:binding name="Service1Soap" type="tns:Service1Soap">
+    <wsdl:binding name="GetTransactionSoap" type="tns:GetTransactionSoap">
         <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
         <wsdl:operation name="GetTransaction">
             <soap:operation soapAction="http://tempuri.org/GetTransaction"
@@ -131,7 +131,7 @@
             </wsdl:output>
         </wsdl:operation>
     </wsdl:binding>
-    <wsdl:binding name="Service1Soap12" type="tns:Service1Soap">
+    <wsdl:binding name="GetTransactionSoap12" type="tns:GetTransactionSoap">
         <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
         <wsdl:operation name="GetTransaction">
             <soap12:operation soapAction="http://tempuri.org/GetTransaction"
@@ -144,12 +144,12 @@
             </wsdl:output>
         </wsdl:operation>
     </wsdl:binding>
-    <wsdl:service name="Service1">
-        <wsdl:port name="Service1Soap" binding="tns:Service1Soap">
-            <soap:address location="http://localhost:58746/Service1.asmx" />
+    <wsdl:service name="GetTransaction">
+        <wsdl:port name="GetTransactionSoap" binding="tns:GetTransactionSoap">
+            <soap:address location="http://localhost:58746/GetTransaction.asmx" />
         </wsdl:port>
-        <wsdl:port name="Service1Soap12" binding="tns:Service1Soap12">
-            <soap12:address location="http://localhost:58746/Service1.asmx" />
+        <wsdl:port name="GetTransactionSoap12" binding="tns:GetTransactionSoap12">
+            <soap12:address location="http://localhost:58746/GetTransaction.asmx" />
         </wsdl:port>
     </wsdl:service>
 </wsdl:definitions>

@@ -1,6 +1,6 @@
 
 /**
- * Service1Stub.java
+ * GetTransactionStub.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis2 version: 1.7.3  Built on : May 30, 2016 (04:08:57 BST)
@@ -8,10 +8,10 @@
 package com.cg.gps.ehiservices.transaction;
 
 /*
-*  Service1Stub java implementation
+*  GetTransactionStub java implementation
 */
 
-public class Service1Stub extends org.apache.axis2.client.Stub {
+public class GetTransactionStub extends org.apache.axis2.client.Stub {
     protected org.apache.axis2.description.AxisOperation[] _operations;
 
     //hashmaps to keep the fault mapping
@@ -33,7 +33,7 @@ public class Service1Stub extends org.apache.axis2.client.Stub {
     private void populateAxisService() throws org.apache.axis2.AxisFault {
 
         //creating the Service with a unique name
-        _service = new org.apache.axis2.description.AxisService("Service1" + getUniqueSuffix());
+        _service = new org.apache.axis2.description.AxisService("GetTransaction" + getUniqueSuffix());
         addAnonymousOperations();
 
         //creating the operations
@@ -59,7 +59,7 @@ public class Service1Stub extends org.apache.axis2.client.Stub {
      * Constructor that takes in a configContext
      */
 
-    public Service1Stub(org.apache.axis2.context.ConfigurationContext configurationContext,
+    public GetTransactionStub(org.apache.axis2.context.ConfigurationContext configurationContext,
             java.lang.String targetEndpoint) throws org.apache.axis2.AxisFault {
         this(configurationContext, targetEndpoint, false);
     }
@@ -67,7 +67,7 @@ public class Service1Stub extends org.apache.axis2.client.Stub {
     /**
      * Constructor that takes in a configContext and useseperate listner
      */
-    public Service1Stub(org.apache.axis2.context.ConfigurationContext configurationContext,
+    public GetTransactionStub(org.apache.axis2.context.ConfigurationContext configurationContext,
             java.lang.String targetEndpoint, boolean useSeparateListener) throws org.apache.axis2.AxisFault {
         //To populate AxisService
         populateAxisService();
@@ -87,33 +87,33 @@ public class Service1Stub extends org.apache.axis2.client.Stub {
     /**
      * Default Constructor
      */
-    public Service1Stub(org.apache.axis2.context.ConfigurationContext configurationContext)
+    public GetTransactionStub(org.apache.axis2.context.ConfigurationContext configurationContext)
             throws org.apache.axis2.AxisFault {
 
-        this(configurationContext, "http://localhost:58746/Service1.asmx");
+        this(configurationContext, "http://localhost:58746/GetTransaction.asmx");
 
     }
 
     /**
      * Default Constructor
      */
-    public Service1Stub() throws org.apache.axis2.AxisFault {
+    public GetTransactionStub() throws org.apache.axis2.AxisFault {
 
-        this("http://localhost:58746/Service1.asmx");
+        this("http://localhost:58746/GetTransaction.asmx");
 
     }
 
     /**
      * Constructor taking the target endpoint
      */
-    public Service1Stub(java.lang.String targetEndpoint) throws org.apache.axis2.AxisFault {
+    public GetTransactionStub(java.lang.String targetEndpoint) throws org.apache.axis2.AxisFault {
         this(null, targetEndpoint);
     }
 
     /**
      * Auto generated method signature
      * 
-     * @see com.cg.gps.ehiservices.transaction.Service1#getTransaction
+     * @see com.cg.gps.ehiservices.transaction.GetTransaction#getTransaction
      * @param getTransaction14
      * 
      */
@@ -224,7 +224,7 @@ public class Service1Stub extends org.apache.axis2.client.Stub {
     /**
      * Auto generated method signature for Asynchronous Invocations
      * 
-     * @see com.cg.gps.ehiservices.transaction.Service1#startgetTransaction
+     * @see com.cg.gps.ehiservices.transaction.GetTransaction#startgetTransaction
      * @param getTransaction14
      * 
      */
@@ -232,7 +232,7 @@ public class Service1Stub extends org.apache.axis2.client.Stub {
 
             org.tempuri.GetTransaction getTransaction14,
 
-            final com.cg.gps.ehiservices.transaction.Service1CallbackHandler callback)
+            final com.cg.gps.ehiservices.transaction.GetTransactionCallbackHandler callback)
 
             throws java.rmi.RemoteException {
 
@@ -375,7 +375,7 @@ public class Service1Stub extends org.apache.axis2.client.Stub {
         return false;
     }
 
-    //http://localhost:58746/Service1.asmx
+    //http://localhost:58746/GetTransaction.asmx
     private org.apache.axiom.om.OMElement toOM(org.tempuri.GetTransaction param, boolean optimizeContent)
             throws org.apache.axis2.AxisFault {
 

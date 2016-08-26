@@ -12,7 +12,7 @@ package com.cg.gps.ehiservices.transaction;
  * Service1CallbackHandler Callback class, Users can extend this class and
  * implement their own receiveResult and receiveError methods.
  */
-public abstract class Service1CallbackHandler {
+public abstract class GetTransactionCallbackHandler {
 
     protected Object clientData;
 
@@ -25,14 +25,14 @@ public abstract class Service1CallbackHandler {
      *            Object mechanism by which the user can pass in user data that
      *            will be avilable at the time this callback is called.
      */
-    public Service1CallbackHandler(Object clientData) {
+    public GetTransactionCallbackHandler(Object clientData) {
         this.clientData = clientData;
     }
 
     /**
      * Please use this constructor if you don't want to set any clientData
      */
-    public Service1CallbackHandler() {
+    public GetTransactionCallbackHandler() {
         this.clientData = null;
     }
 
