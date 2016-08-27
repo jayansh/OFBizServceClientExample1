@@ -13,9 +13,9 @@
     </service>
     <service name="Cut_Off">
         <messageReceivers>
-            <messageReceiver mep="http://www.w3.org/ns/wsdl/in-out" class="com.cg.ehi.services.Cut_OffMessageReceiverInOut"/>
+            <messageReceiver mep="http://www.w3.org/ns/wsdl/in-out" class="com.cg.gps.ehiservices.cutoff.Cut_OffMessageReceiverInOut"/>
         </messageReceivers>
-        <parameter name="ServiceClass">com.cg.ehi.services.Cut_OffSkeleton</parameter>
+        <parameter name="ServiceClass">com.cg.gps.ehiservices.cutoff.Cut_OffSkeleton</parameter>
         <parameter name="useOriginalwsdl">true</parameter>
         <parameter name="modifyUserWSDLPortAddress">true</parameter>
         <operation name="Cut_Off" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://tempuri.org/">
